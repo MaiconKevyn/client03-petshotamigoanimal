@@ -1,4 +1,4 @@
-// Comportamentos do site: menu movel, cabecalho colado, carrossel de
+// Comportamentos do site: menu movel, cabecalho colado, trilho de
 // depoimentos e botao de voltar ao topo.
 
 const menu = document.querySelector('[data-menu]');
@@ -31,33 +31,27 @@ const aoRolar = () => {
 aoRolar();
 window.addEventListener('scroll', aoRolar, { passive: true });
 
-const carrossel = document.querySelector('[data-carrossel]');
-const pontos = document.querySelector('[data-pontos]');
+const secaoDepoimentos = document.querySelector('[data-depoimentos]');
+const controleDepoimentos = document.querySelector('[data-depoimentos-controle]');
 
-if (carrossel && pontos) {
-  const botoes = Array.from(pontos.querySelectorAll('button'));
-  const cartoes = Array.from(carrossel.children);
+if (secaoDepoimentos && controleDepoimentos instanceof HTMLButtonElement) {
+  const iconePausa = controleDepoimentos.querySelector('[data-icone-pausa]');
+  const iconePlay = controleDepoimentos.querySelector('[data-icone-play]');
 
-  botoes.forEach((botao, indice) => {
-    botao.addEventListener('click', () => {
-      cartoes[indice]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-    });
+  controleDepoimentos.addEventListener('click', () => {
+    const pausado = secaoDepoimentos.getAttribute('data-pausado') === 'true';
+    const proximoEstado = !pausado;
+
+    secaoDepoimentos.setAttribute('data-pausado', String(proximoEstado));
+    controleDepoimentos.setAttribute('aria-pressed', String(proximoEstado));
+    controleDepoimentos.setAttribute(
+      'aria-label',
+      proximoEstado ? 'Continuar carrossel de depoimentos' : 'Pausar carrossel de depoimentos',
+    );
+
+    if (iconePausa instanceof HTMLElement) iconePausa.hidden = proximoEstado;
+    if (iconePlay instanceof HTMLElement) iconePlay.hidden = !proximoEstado;
   });
-
-  const observador = new IntersectionObserver(
-    (entradas) => {
-      entradas.forEach((entrada) => {
-        if (!entrada.isIntersecting) return;
-        const indice = cartoes.indexOf(entrada.target);
-        botoes.forEach((botao, i) => {
-          botao.setAttribute('aria-current', String(i === indice));
-        });
-      });
-    },
-    { root: carrossel, threshold: 0.6 },
-  );
-
-  cartoes.forEach((cartao) => observador.observe(cartao));
 }
 
 const assinatura = document.querySelector('[data-assinatura]');

@@ -1,45 +1,52 @@
 ---
 import Icone from './Icone.astro';
 import { depoimentos } from '../data/site';
+
+const grupos = [false, true] as const;
 ---
 
-<section class="depoimentos" id="depoimentos">
+<section class="depoimentos" id="depoimentos" data-depoimentos>
   <div class="container">
     <h2 class="visualmente-oculto">O que dizem nossos clientes</h2>
 
-    <div class="depoimentos__trilho" data-carrossel tabindex="0" aria-label="Depoimentos de clientes">
-      {
-        depoimentos.map((item) => (
-          <article class="depoimento">
-            <h3 class="depoimento__titulo">
-              <Icone nome="aspas" />
-              {item.titulo}
-            </h3>
-            <p class="depoimento__texto">{item.texto}</p>
-            <div class="depoimento__autor">
-              <img src={item.foto} alt="" loading="lazy" decoding="async" />
-              <div>
-                <p class="depoimento__nome">{item.nome}</p>
-                <p class="depoimento__papel">Cliente da clínica</p>
-              </div>
+    <div class="depoimentos__janela" aria-label="Depoimentos de clientes">
+      <div class="depoimentos__trilho">
+        {
+          grupos.map((duplicado) => (
+            <div class="depoimentos__grupo" aria-hidden={duplicado ? 'true' : undefined}>
+              {depoimentos.map((item) => (
+                <article class="depoimento">
+                  <h3 class="depoimento__titulo">
+                    <Icone nome="aspas" />
+                    {item.titulo}
+                  </h3>
+                  <p class="depoimento__texto">{item.texto}</p>
+                  <div class="depoimento__autor">
+                    <img src={item.foto} alt="" loading="lazy" decoding="async" />
+                    <div>
+                      <p class="depoimento__nome">{item.nome}</p>
+                      <p class="depoimento__papel">Cliente da clínica</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
-          </article>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
 
-    <div class="depoimentos__pontos" data-pontos role="tablist" aria-label="Navegar depoimentos">
-      {
-        depoimentos.map((item, indice) => (
-          <button
-            type="button"
-            role="tab"
-            data-indice={indice}
-            aria-current={indice === 0 ? 'true' : 'false'}
-            aria-label={`Ver depoimento de ${item.nome}`}
-          />
-        ))
-      }
+    <div class="depoimentos__controles">
+      <button
+        class="depoimentos__controle"
+        type="button"
+        data-depoimentos-controle
+        aria-pressed="false"
+        aria-label="Pausar carrossel de depoimentos"
+      >
+        <span data-icone-pausa><Icone nome="pausa" /></span>
+        <span data-icone-play hidden><Icone nome="play" /></span>
+      </button>
     </div>
   </div>
 
