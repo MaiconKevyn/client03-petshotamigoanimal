@@ -632,7 +632,7 @@ ul {
 .hero__fantasma {
   position: absolute;
   z-index: 2;
-  right: 0;
+  right: clamp(24px, 3vw, 56px);
   bottom: clamp(40px, 9vh, 110px);
   font-size: clamp(3rem, 8.4vw, 8rem);
   font-weight: 500;
@@ -1733,7 +1733,7 @@ ul {
 
   .hero__fantasma {
     bottom: 18px;
-    right: 12px;
+    right: 20px;
     font-size: clamp(2.4rem, 13vw, 3.4rem);
   }
 
