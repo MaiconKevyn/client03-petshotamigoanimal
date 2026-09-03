@@ -5,11 +5,12 @@
 
 :root {
   /* Paleta da marca Amigo Animal (amostrada de assets/branding). */
-  --framboesa: #8e0040; /* profundidade: fim do gradiente e palavras-fantasma */
-  --magenta: #eb0060;   /* acao primaria — script "pet shop" do logo */
-  --turquesa: #00a4a8;  /* acento: icones, chips, detalhes — wordmark do logo */
-  --rosa: #fd819d;      /* silhueta do logo, inicio do gradiente */
-  --rosa-claro: #ffb9c8;
+  --framboesa: #a3003f; /* profundidade: fim do gradiente e palavras-fantasma */
+  --magenta: #fd2575;   /* script "pet shop" do logo — acao primaria */
+  --turquesa: #01a4a4;  /* "AMIGO" e circulo pontilhado do logo — acento */
+  --coral: #fd6a46;     /* "ANIMAL" do logo — segundo acento, topo do hero */
+  --rosa: #fd4670;      /* silhueta do cao no logo */
+  --rosa-claro: #ff9fae;
   --blush: #f6e9ed;     /* fundo das secoes claras */
   --creme: #fff4f7;
   --petroleo: #06343a;  /* rodape: turquesa levado ao escuro */
@@ -18,7 +19,7 @@
   --branco: #ffffff;
 
   --borda-suave: rgba(22, 20, 26, 0.12);
-  --borda-magenta: rgba(235, 0, 96, 0.32);
+  --borda-magenta: rgba(253, 37, 117, 0.34);
 
   --sombra-cartao: 0 18px 40px -24px rgba(66, 12, 38, 0.32);
   --sombra-flutuante: 0 24px 60px -28px rgba(66, 12, 38, 0.42);
@@ -189,7 +190,7 @@ ul {
   line-height: 0.8;
   letter-spacing: -0.045em;
   text-transform: lowercase;
-  background: linear-gradient(180deg, var(--framboesa) 4%, rgba(142, 0, 64, 0.06) 82%);
+  background: linear-gradient(180deg, var(--framboesa) 4%, rgba(163, 0, 63, 0.06) 82%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -245,7 +246,7 @@ ul {
 }
 
 .botao--blush {
-  background: rgba(235, 0, 96, 0.09);
+  background: rgba(253, 37, 117, 0.09);
   color: var(--magenta);
 }
 
@@ -364,18 +365,30 @@ ul {
 }
 
 .marca__simbolo {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
+  width: 56px;
+  height: 56px;
   flex: none;
 }
 
+/* Wordmark recomposto em texto: "Amigo" turquesa e "Animal" coral, como no logo. */
 .marca__texto {
   display: grid;
   font-size: 17px;
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.marca__texto span:first-child {
+  color: var(--turquesa);
+}
+
+.marca__texto span:last-child {
+  color: var(--coral);
+}
+
+.rodape .marca__texto span {
+  color: var(--creme);
 }
 
 .navegacao {
@@ -497,8 +510,19 @@ ul {
   padding: 172px 0 64px;
   overflow: hidden;
   background:
-    radial-gradient(120% 130% at 82% 18%, #ffc3d0 0%, #fd819d 32%, #e5205f 62%, #8e0040 100%);
+    radial-gradient(135% 145% at 93% 4%, #fd9a6a 0%, #fd6a46 12%, #fd4c66 38%, #ee2a68 62%, #a3003f 100%);
   color: var(--creme);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(103, 0, 41, 0.76) 0%, rgba(163, 0, 63, 0.48) 28%, rgba(212, 20, 90, 0.14) 52%, transparent 70%),
+    linear-gradient(180deg, rgba(65, 0, 25, 0.08) 0%, transparent 42%, rgba(103, 0, 41, 0.14) 100%);
+  pointer-events: none;
 }
 
 .hero__grade {
@@ -570,7 +594,7 @@ ul {
   justify-items: center;
   gap: 12px;
   padding: 26px 12px 16px;
-  background: linear-gradient(180deg, rgba(142, 0, 64, 0) 0%, rgba(142, 0, 64, 0.72) 62%);
+  background: linear-gradient(180deg, rgba(163, 0, 63, 0) 0%, rgba(163, 0, 63, 0.72) 62%);
   text-align: center;
   font-size: 13px;
   line-height: 1.25;
@@ -594,29 +618,20 @@ ul {
 
 .hero__animal {
   position: absolute;
-  z-index: 2;
-  left: 50%;
-  bottom: 0;
-  translate: -48% 0;
-  height: min(88vh, 840px);
-  width: auto;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   max-width: none;
-  object-fit: contain;
-  object-position: bottom center;
-  -webkit-mask-image:
-    linear-gradient(90deg, transparent 0%, #000 32%, #000 70%, transparent 100%),
-    linear-gradient(180deg, transparent 0%, #000 22%, #000 100%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(90deg, transparent 0%, #000 32%, #000 70%, transparent 100%),
-    linear-gradient(180deg, transparent 0%, #000 22%, #000 100%);
-  mask-composite: intersect;
+  object-fit: cover;
+  object-position: 58% center;
+  filter: saturate(0.94) contrast(1.05);
   pointer-events: none;
 }
 
 .hero__fantasma {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   right: 0;
   bottom: clamp(40px, 9vh, 110px);
   font-size: clamp(3rem, 8.4vw, 8rem);
@@ -744,7 +759,7 @@ ul {
 }
 
 .servicos__marca .fantasma {
-  background: linear-gradient(180deg, var(--framboesa) 8%, rgba(142, 0, 64, 0.04) 88%);
+  background: linear-gradient(180deg, var(--framboesa) 8%, rgba(163, 0, 63, 0.04) 88%);
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -1698,10 +1713,16 @@ ul {
   }
 
   .hero__animal {
-    height: min(48vh, 400px);
-    width: auto;
-    translate: -50% 0;
-    opacity: 0.92;
+    width: 100%;
+    height: 100%;
+    object-position: 64% center;
+    opacity: 1;
+  }
+
+  .hero::after {
+    background:
+      linear-gradient(90deg, rgba(103, 0, 41, 0.84) 0%, rgba(163, 0, 63, 0.58) 48%, rgba(212, 20, 90, 0.18) 78%, transparent 100%),
+      linear-gradient(180deg, rgba(65, 0, 25, 0.08) 0%, transparent 38%, rgba(103, 0, 41, 0.28) 100%);
   }
 
   .hero__selo {

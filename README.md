@@ -50,11 +50,11 @@ marca do cliente (`assets/branding/`).
 
 | Token | Valor | Origem / uso |
 | --- | --- | --- |
-| `--magenta` | `#eb0060` | script "pet shop" do logo — acao primaria |
-| `--turquesa` | `#00a4a8` | wordmark do logo — icones, chips, detalhes |
-| `--rosa` | `#fd819d` | silhueta do logo — inicio do gradiente do hero |
-| `--rosa-claro` | `#ffb9c8` | topo do gradiente do hero |
-| `--framboesa` | `#8e0040` | fim do gradiente, palavras-fantasma |
+| `--magenta` | `#fd2575` | script "pet shop" do logo — acao primaria |
+| `--turquesa` | `#01a4a4` | "AMIGO" e circulo pontilhado — icones e chips |
+| `--coral` | `#fd6a46` | "ANIMAL" — segundo acento, topo do gradiente do hero |
+| `--rosa` | `#fd4670` | silhueta do cao no logo |
+| `--framboesa` | `#a3003f` | fim do gradiente, palavras-fantasma |
 | `--blush` | `#f6e9ed` | fundo das secoes claras |
 | `--creme` | `#fff4f7` | texto sobre fundo escuro |
 | `--petroleo` | `#06343a` | rodape (turquesa levado ao escuro) |
@@ -95,22 +95,30 @@ Formatos esperados, mantendo os mesmos nomes de arquivo:
 | `servicos/*.webp` | retrato ~3:4 | 3 cartoes de destaque |
 | `internacao.webp`, `hotel.webp` | paisagem ~3:1 | cartoes editoriais |
 | `equipe/vet-0*.webp` | retrato ~3:4 | cartoes da equipe |
-| `dalmata.webp` | ~1:1, fundo `#e9e3dc` | mascote da secao de depoimentos |
-| `og-amigo-animal.jpg` | 1200x630 | compartilhamento em redes (ainda falta) |
+| `dalmata.webp` | ~1:1, fundo `#f6e9ed` | mascote da secao de depoimentos |
 
 ### Marca
 
-`public/assets/img/logo-amigo-animal.svg` usa o simbolo real da marca (silhueta
-de cao + gato em rosa e o circulo pontilhado em turquesa), derivado de
-`assets/branding/logo-amigo-animal.svg`. O nome "Amigo Animal" e composto em
-HTML com a fonte do site, em vez de vir rasterizado no SVG — assim escala bem e
-fica selecionavel.
+Tudo deriva de `assets/branding/logo-amigo-animal-sem-fundo.png`, o logo oficial
+em PNG transparente:
 
-O logo completo do cliente (com o wordmark serifado e o script "pet shop") vive
-em `assets/branding/`, fora do build, para uso em impressos e redes.
+| Arquivo | Origem | Uso |
+| --- | --- | --- |
+| `public/assets/img/marca-amigo-animal.webp` | simbolo recortado (cao + gato + circulo) | cabecalho e rodape |
+| `public/assets/img/favicon.png` | simbolo sobre placa branca arredondada | aba do navegador, atalho iOS |
+| `public/assets/img/og-amigo-animal.jpg` | lockup completo sobre `--blush` | card de compartilhamento |
+| `assets/branding/logo-amigo-animal-lockup.webp` | lockup aparado | entrega, impressos, redes |
+
+No cabecalho e no rodape entra so o **simbolo**; o nome "Amigo Animal" e
+composto em HTML com a fonte do site — "Amigo" em `--turquesa` e "Animal" em
+`--coral`, como no logo. Assim o wordmark fica nitido em qualquer tamanho e
+continua selecionavel, o que nao aconteceria com o lockup rasterizado reduzido a
+56px de altura. No rodape as duas palavras viram `--creme` para contrastar com o
+fundo petroleo.
 
 As fotos com fundo laranja da referencia (`hero-cao.webp` e `hotel.webp`) foram
-rotacionadas em matiz (+318 graus, satura 0,74) para casar com o rosa da marca.
+rotacionadas em matiz (+324 graus, satura 0,78) para casar com o gradiente
+coral-rosa do hero.
 
 ## Acessibilidade e SEO
 

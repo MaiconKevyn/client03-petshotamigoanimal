@@ -110,8 +110,6 @@ o certificado estiver emitido.
 - [ ] Trocar os nomes/fotos da equipe e os depoimentos por conteudo real.
 - [ ] Substituir as imagens de `public/assets/img/` por fotos do cliente
       (ver "Imagens" no `README.md`).
-- [ ] Gerar `public/assets/img/og-amigo-animal.jpg` (1200x630) para o
-      compartilhamento em redes sociais.
 - [ ] Conferir se o pino do Google Maps cai no ponto certo (o embed usa busca
       por endereco, nao coordenada).
 - [ ] Rodar `./set-domain.sh <dominio-final>`.
