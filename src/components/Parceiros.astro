@@ -1,0 +1,25 @@
+---
+import Icone from './Icone.astro';
+
+const parceiros = [
+  { nome: 'Oxigênio<br />Medical', icone: 'cao', empilhado: false },
+  { nome: 'VetCity', icone: 'coracaoPata', empilhado: true },
+  { nome: 'Clínica 24h', icone: 'cruz', empilhado: true },
+  { nome: 'Farmácia<br />Animal', icone: 'frasco', empilhado: true },
+  { nome: 'DNA<br />Laboratório', icone: 'pata', empilhado: false },
+  { nome: 'Medical<br />Consulting', icone: 'estetoscopio', empilhado: true },
+];
+---
+
+<section class="parceiros" aria-label="Parceiros">
+  <div class="container parceiros__lista">
+    {
+      parceiros.map((parceiro) => (
+        <span class={`parceiro${parceiro.empilhado ? ' parceiro--empilhado' : ''}`}>
+          <Icone nome={parceiro.icone} />
+          <span set:html={parceiro.nome} />
+        </span>
+      ))
+    }
+  </div>
+</section>

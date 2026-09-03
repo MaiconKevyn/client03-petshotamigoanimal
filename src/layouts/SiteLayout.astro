@@ -1,0 +1,98 @@
+---
+import '@fontsource/hanken-grotesk/latin-400.css';
+import '@fontsource/hanken-grotesk/latin-500.css';
+import '@fontsource/hanken-grotesk/latin-600.css';
+import '../styles/style.css';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const origem = Astro.site ?? new URL('https://amigoanimal.umbrastudio.com.br');
+const canonicalUrl = new URL(Astro.url.pathname, origem);
+const ogImageUrl = new URL('/assets/img/og-amigo-animal.jpg', origem);
+
+const dadosEstruturados = {
+  '@context': 'https://schema.org',
+  '@type': 'VeterinaryCare',
+  name: site.nomeCompleto,
+  description,
+  url: canonicalUrl.href,
+  image: ogImageUrl.href,
+  telephone: '+5551985648001',
+  priceRange: '$$',
+  currenciesAccepted: 'BRL',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.endereco.rua,
+    addressLocality: site.endereco.cidade,
+    addressRegion: site.endereco.uf,
+    addressCountry: 'BR',
+  },
+  hasMap: site.mapaLink,
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '08:00',
+      closes: '19:00',
+    },
+  ],
+  areaServed: { '@type': 'City', name: site.endereco.cidade },
+  sameAs: [site.instagram],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Serviços',
+    itemListElement: [
+      'Vacinação',
+      'Exames e diagnóstico',
+      'Odontologia veterinária',
+      'Cirurgia',
+      'Banho e tosa',
+      'Nutrição animal',
+    ].map((nome) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: nome },
+    })),
+  },
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={site.nomeCompleto} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#eb0060" />
+
+    <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/img/favicon.svg" />
+    <link rel="preload" as="image" href="/assets/img/hero-cao.webp" type="image/webp" fetchpriority="high" />
+    <script type="application/ld+json" set:html={JSON.stringify(dadosEstruturados)} is:inline />
+  </head>
+  <body>
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+    <slot />
+    <script src="../scripts/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+---
+import Icone from './Icone.astro';
+import { servicos } from '../data/site';
+---
+
+<section class="servicos" id="servicos">
+  <div class="container">
+    <div class="servicos__marca">
+      <p class="fantasma" aria-hidden="true">serviços</p>
+      <div class="servicos__etiquetas" aria-hidden="true">
+        <span class="etiqueta etiqueta--1">Bem-estar</span>
+        <span class="etiqueta etiqueta--2">Exames laboratoriais</span>
+        <span class="etiqueta etiqueta--3">Banho &amp; tosa</span>
+        <span class="etiqueta etiqueta--4">Check-up</span>
+      </div>
+    </div>
+
+    <h2 class="servicos__intro">Cuidado de excelência em cada fase da vida do seu pet</h2>
+
+    <div class="servicos__lista">
+      {
+        servicos.map((servico) => (
+          <article class="servico">
+            <span class="servico__icone">
+              <Icone nome={servico.icone} />
+            </span>
+            <div class="servico__corpo">
+              <h3 class="servico__titulo">
+                <img
+                  class="servico__miniatura"
+                  src={servico.miniatura}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+                {servico.titulo}
+              </h3>
+              <p class="servico__texto">{servico.texto}</p>
+            </div>
+            <a class="botao botao--blush botao--pequeno" href="#contato">
+              Saiba mais
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

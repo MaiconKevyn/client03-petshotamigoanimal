@@ -1,0 +1,92 @@
+---
+import Icone from './Icone.astro';
+import { navegacao, site } from '../data/site';
+
+interface Props {
+  /** O cabecalho flutua sobre o hero na home; em paginas internas ele fica solto. */
+  sobreHero?: boolean;
+}
+
+const { sobreHero = true } = Astro.props;
+---
+
+{sobreHero && (
+<div class="topo">
+  <div class="container topo__barra">
+    <a class="topo__item" href={site.telefoneLink}>
+      <Icone nome="telefone" />
+      {site.telefone}
+    </a>
+    <span class="topo__item">
+      <Icone nome="relogio" />
+      {site.horario}
+    </span>
+  </div>
+</div>
+)}
+
+<header class={`cabecalho${sobreHero ? '' : ' cabecalho--solto'}`} data-cabecalho>
+  <div class="container">
+    <div class="cabecalho__barra">
+      <a class="marca" href="/" aria-label={`${site.nomeCompleto} — página inicial`}>
+        <img
+          class="marca__simbolo"
+          src="/assets/img/logo-amigo-animal.svg"
+          alt=""
+          width="52"
+          height="52"
+        />
+        <span class="marca__texto"><span>Amigo</span><span>Animal</span></span>
+      </a>
+
+      <nav class="navegacao" id="menu-principal" aria-label="Navegação principal">
+        <ul class="navegacao__lista">
+          {
+            navegacao.map((item) => (
+              <li>
+                <a
+                  class="navegacao__link"
+                  href={item.href}
+                  aria-current={'atual' in item && item.atual ? 'page' : undefined}
+                >
+                  {item.rotulo}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="cabecalho__acoes">
+        <a
+          class="icone-acao"
+          href={site.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram do Pet Shop Amigo Animal"
+        >
+          <Icone nome="instagram" />
+        </a>
+        <a
+          class="botao botao--magenta"
+          href={site.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icone nome="whatsapp" />
+          Chamar no WhatsApp
+        </a>
+        <button
+          class="menu-alternar"
+          type="button"
+          aria-expanded="false"
+          aria-controls="menu-principal"
+          data-menu
+        >
+          <span></span>
+          <span class="visualmente-oculto">Abrir menu</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>

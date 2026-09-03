@@ -1,0 +1,87 @@
+---
+import Icone from './Icone.astro';
+import { site } from '../data/site';
+
+const ano = new Date().getFullYear();
+const endereco = `${site.endereco.rua} — ${site.endereco.cidade}/${site.endereco.uf}`;
+---
+
+<footer class="rodape" id="contato">
+  <div class="container">
+    <div class="rodape__topo">
+      <span class="marca">
+        <img class="marca__simbolo" src="/assets/img/logo-amigo-animal.svg" alt="" width="52" height="52" />
+        <span class="marca__texto"><span>Amigo</span><span>Animal</span></span>
+      </span>
+      <a class="rodape__slogan" href={site.whatsapp}>
+        {site.slogan}
+        <Icone nome="setaDiagonal" />
+      </a>
+    </div>
+
+    <div class="rodape__grade">
+      <div>
+        <h2 class="rodape__titulo">Newsletter</h2>
+        <form class="assinatura" data-assinatura>
+          <label class="visualmente-oculto" for="email-news">Seu e-mail</label>
+          <input
+            id="email-news"
+            type="email"
+            name="email"
+            placeholder="Receba novidades e dicas"
+            required
+          />
+          <button type="submit" aria-label="Assinar newsletter">
+            <Icone nome="envelope" />
+          </button>
+        </form>
+        <p class="rodape__nota" data-assinatura-aviso>
+          Enviamos dicas de saúde animal e avisos de campanhas de vacinação. Sem spam.
+        </p>
+        <div class="redes">
+          <a href={site.whatsapp} rel="noopener noreferrer" target="_blank">WhatsApp</a>
+          <a href={site.instagram} rel="noopener noreferrer" target="_blank">Instagram</a>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="rodape__titulo">Contato</h2>
+        <div class="contatos">
+          <p>
+            <b>Estamos aqui:</b>{' '}
+            <a href={site.mapaLink} target="_blank" rel="noopener noreferrer">{endereco}</a>
+          </p>
+          <p><b>Atendimento:</b> {site.horario}</p>
+        </div>
+        <a class="rodape__telefone" href={site.telefoneLink}>
+          <Icone nome="telefone" />
+          {site.telefone}
+        </a>
+      </div>
+
+      <div>
+        <h2 class="rodape__titulo">Links úteis</h2>
+        <nav class="rodape__links" aria-label="Links do rodapé">
+          <a href="#servicos">Medicina preventiva</a>
+          <a href="#servicos">Vacinação</a>
+          <a href="#servicos">Odontologia</a>
+          <a href="#servicos">Exames e diagnóstico</a>
+          <a href="#estrutura">Internação</a>
+          <a href="#servicos">Nutrição</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="rodape__base">
+      <p>© {ano} {site.nomeCompleto}. Todos os direitos reservados.</p>
+      <nav aria-label="Políticas">
+        <a href="#contato">Termos de uso</a>
+        <a href="#contato">Política de privacidade</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<a class="subir" href="#topo" data-subir aria-label="Voltar ao topo">
+  <Icone nome="setaCima" />
+</a>

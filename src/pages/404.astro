@@ -1,0 +1,19 @@
+---
+import Cabecalho from '../components/Cabecalho.astro';
+import Rodape from '../components/Rodape.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const title = 'Página não encontrada — Pet Shop Amigo Animal';
+const description = 'A página solicitada não foi encontrada no site do Pet Shop Amigo Animal.';
+---
+
+<SiteLayout {title} {description}>
+  <Cabecalho sobreHero={false} />
+  <main id="conteudo" class="pagina-erro">
+    <p class="sobretitulo">Erro 404</p>
+    <h1>Página não encontrada</h1>
+    <p>O endereço pode ter mudado ou não existir mais.</p>
+    <a class="botao botao--magenta" href="/">Voltar para o início</a>
+  </main>
+  <Rodape />
+</SiteLayout>

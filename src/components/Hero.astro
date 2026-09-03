@@ -1,0 +1,35 @@
+---
+import Icone from './Icone.astro';
+---
+
+<section class="hero" id="topo">
+  <img
+    class="hero__animal"
+    src="/assets/img/hero-cao.webp"
+    alt="Cão de porte médio olhando para cima"
+    width="490"
+    height="985"
+    fetchpriority="high"
+    decoding="async"
+  />
+  <p class="hero__fantasma" aria-hidden="true">amigo<br />animal</p>
+
+  <div class="container hero__grade">
+    <div>
+      <h1 class="hero__titulo">Onde o bem-estar<br />do seu pet<br />vem primeiro</h1>
+      <p class="hero__texto">
+        Na nossa clínica e pet shop, cada animal recebe cuidado atencioso e de alta qualidade
+        em todas as fases da vida — do primeiro filhote ao companheiro de sempre.
+      </p>
+      <a class="hero__selo" href="#estrutura">Conheça<br />a clínica</a>
+    </div>
+
+    <a class="hero__midia" href="#estrutura">
+      <img src="/assets/img/servicos/consulta.webp" alt="" width="160" height="190" loading="lazy" />
+      <span class="hero__midia-conteudo">
+        <span class="hero__play"><Icone nome="play" /></span>
+        <span>Seu parceiro<br />na saúde animal</span>
+      </span>
+    </a>
+  </div>
+</section>

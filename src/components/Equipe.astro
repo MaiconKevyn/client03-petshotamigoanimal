@@ -1,0 +1,34 @@
+---
+import Icone from './Icone.astro';
+import { equipe } from '../data/site';
+---
+
+<section class="equipe" id="equipe">
+  <div class="container">
+    <div class="secao-cabecalho">
+      <span class="chip">
+        <Icone nome="coracaoPata" />
+        Mãos experientes, coração no lugar certo
+      </span>
+      <h2 class="titulo-secao">Os especialistas por trás de cada rabinho abanando</h2>
+    </div>
+
+    <div class="equipe__grade">
+      {
+        equipe.map((pessoa) => (
+          <article class="pessoa">
+            <img src={pessoa.foto} alt={pessoa.alt} loading="lazy" decoding="async" />
+            <div>
+              <h3 class="pessoa__nome">{pessoa.nome}</h3>
+              <p class="pessoa__cargo">{pessoa.cargo}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="equipe__acao">
+      <a class="botao botao--magenta" href="#contato">Conheça a equipe</a>
+    </div>
+  </div>
+</section>
