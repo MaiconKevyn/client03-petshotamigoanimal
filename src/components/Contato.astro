@@ -1,0 +1,80 @@
+---
+import Icone from './Icone.astro';
+import { site } from '../data/site';
+
+const endereco = `${site.endereco.rua} — ${site.endereco.cidade}/${site.endereco.uf}`;
+---
+
+<section class="contato" id="contato">
+  <div class="container">
+    <div class="secao-cabecalho">
+      <span class="chip">
+        <Icone nome="coracaoPata" />
+        Estamos pertinho de você
+      </span>
+      <h2 class="titulo-secao">Venha nos visitar ou fale com a gente agora</h2>
+    </div>
+
+    <div class="contato__grade">
+      <div class="contato__painel">
+        <ul class="contato__dados">
+          <li>
+            <span class="contato__icone"><Icone nome="local" /></span>
+            <div>
+              <b>Endereço</b>
+              <a href={site.mapaLink} target="_blank" rel="noopener noreferrer">{endereco}</a>
+            </div>
+          </li>
+          <li>
+            <span class="contato__icone"><Icone nome="relogio" /></span>
+            <div>
+              <b>Atendimento</b>
+              <span>{site.horario}</span>
+            </div>
+          </li>
+          <li>
+            <span class="contato__icone"><Icone nome="telefone" /></span>
+            <div>
+              <b>Telefone</b>
+              <a href={site.telefoneLink}>{site.telefone}</a>
+            </div>
+          </li>
+        </ul>
+
+        <div class="contato__acoes">
+          <a
+            class="botao botao--magenta"
+            href={site.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icone nome="whatsapp" />
+            Chamar no WhatsApp
+          </a>
+          <a
+            class="botao botao--turquesa"
+            href={site.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icone nome="instagram" />
+            Seguir no Instagram
+          </a>
+        </div>
+      </div>
+
+      <div class="contato__mapa">
+        <iframe
+          src={site.mapaEmbed}
+          title={`Mapa com a localização do Pet Shop Amigo Animal na ${endereco}`}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+        <a class="contato__mapa-link" href={site.mapaLink} target="_blank" rel="noopener noreferrer">
+          Abrir no Google Maps
+          <Icone nome="setaDiagonal" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

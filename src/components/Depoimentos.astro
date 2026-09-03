@@ -1,0 +1,58 @@
+---
+import Icone from './Icone.astro';
+import { depoimentos } from '../data/site';
+---
+
+<section class="depoimentos" id="depoimentos">
+  <div class="container">
+    <h2 class="visualmente-oculto">O que dizem nossos clientes</h2>
+
+    <div class="depoimentos__trilho" data-carrossel tabindex="0" aria-label="Depoimentos de clientes">
+      {
+        depoimentos.map((item) => (
+          <article class="depoimento">
+            <h3 class="depoimento__titulo">
+              <Icone nome="aspas" />
+              {item.titulo}
+            </h3>
+            <p class="depoimento__texto">{item.texto}</p>
+            <div class="depoimento__autor">
+              <img src={item.foto} alt="" loading="lazy" decoding="async" />
+              <div>
+                <p class="depoimento__nome">{item.nome}</p>
+                <p class="depoimento__papel">Cliente da clínica</p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="depoimentos__pontos" data-pontos role="tablist" aria-label="Navegar depoimentos">
+      {
+        depoimentos.map((item, indice) => (
+          <button
+            type="button"
+            role="tab"
+            data-indice={indice}
+            aria-current={indice === 0 ? 'true' : 'false'}
+            aria-label={`Ver depoimento de ${item.nome}`}
+          />
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="depoimentos__rodape">
+    <p class="fantasma" aria-hidden="true">clientes</p>
+    <img
+      class="depoimentos__cao"
+      src="/assets/img/dalmata.webp"
+      alt=""
+      width="288"
+      height="259"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+</section>

@@ -1,0 +1,14 @@
+node_modules/
+.astro/
+dist/
+release/*
+!release/amigo-animal-site.zip
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.env
+.env.*
+!.env.example
+*.pem
+*.key

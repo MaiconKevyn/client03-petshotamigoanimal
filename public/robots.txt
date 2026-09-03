@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# A demonstracao usa meta robots e X-Robots-Tag com noindex.
+# Permitir o rastreamento deixa os buscadores enxergarem essa diretiva.

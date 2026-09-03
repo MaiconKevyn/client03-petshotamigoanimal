@@ -1,0 +1,32 @@
+---
+import Cabecalho from '../components/Cabecalho.astro';
+import Contato from '../components/Contato.astro';
+import Depoimentos from '../components/Depoimentos.astro';
+import Destaques from '../components/Destaques.astro';
+import Equipe from '../components/Equipe.astro';
+import Estrutura from '../components/Estrutura.astro';
+import Hero from '../components/Hero.astro';
+import Parceiros from '../components/Parceiros.astro';
+import Rodape from '../components/Rodape.astro';
+import Servicos from '../components/Servicos.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const title = 'Pet Shop Amigo Animal — Clínica veterinária, banho e tosa';
+const description =
+  'Clínica veterinária e pet shop com consultas, vacinação, exames, cirurgia, banho e tosa. Cuidado completo para o seu pet em todas as fases da vida.';
+---
+
+<SiteLayout {title} {description}>
+  <Cabecalho />
+  <main id="conteudo">
+    <Hero />
+    <Destaques />
+    <Servicos />
+    <Estrutura />
+    <Parceiros />
+    <Equipe />
+    <Depoimentos />
+    <Contato />
+  </main>
+  <Rodape />
+</SiteLayout>

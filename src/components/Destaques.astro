@@ -1,0 +1,40 @@
+---
+import Icone from './Icone.astro';
+import { destaques } from '../data/site';
+---
+
+<section class="destaques">
+  <div class="container">
+    <div class="secao-cabecalho">
+      <span class="chip">
+        <Icone nome="coracaoPata" />
+        A saúde do seu pet, nossa prioridade
+      </span>
+      <h2 class="titulo-secao">Cuidado veterinário completo para pets felizes e saudáveis</h2>
+    </div>
+
+    <div class="destaques__grade">
+      {
+        destaques.map((item) => (
+          <article class={`cartao-destaque${item.largo ? ' cartao-destaque--largo' : ''}`}>
+            <img
+              class="cartao-destaque__foto"
+              src={item.foto}
+              alt={item.alt}
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="chip">{item.chip}</span>
+            <div class="cartao-destaque__corpo">
+              <h3 class="cartao-destaque__titulo">{item.titulo}</h3>
+              <p class="cartao-destaque__texto">{item.texto}</p>
+              <a class="seta-circular" href="#servicos" aria-label={`Saiba mais sobre ${item.titulo}`}>
+                <Icone nome="seta" />
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
