@@ -8,14 +8,14 @@ import { servicos } from '../data/site';
     <div class="servicos__marca">
       <p class="fantasma" aria-hidden="true">serviços</p>
       <div class="servicos__etiquetas" aria-hidden="true">
-        <span class="etiqueta etiqueta--1">Bem-estar</span>
-        <span class="etiqueta etiqueta--2">Exames laboratoriais</span>
+        <span class="etiqueta etiqueta--1">Cuidado veterinário</span>
+        <span class="etiqueta etiqueta--2">Castração segura</span>
         <span class="etiqueta etiqueta--3">Banho &amp; tosa</span>
-        <span class="etiqueta etiqueta--4">Check-up</span>
+        <span class="etiqueta etiqueta--4">Pet shop</span>
       </div>
     </div>
 
-    <h2 class="servicos__intro">Cuidado de excelência em cada fase da vida do seu pet</h2>
+    <h2 class="servicos__intro">Tudo o que seu pet precisa, com cuidado em cada detalhe</h2>
 
     <div class="servicos__lista">
       {
@@ -24,20 +24,28 @@ import { servicos } from '../data/site';
             <span class="servico__icone">
               <Icone nome={servico.icone} />
             </span>
-            <div class="servico__corpo">
-              <h3 class="servico__titulo">
+            <div class="servico__conteudo">
+              <div class="servico__midia">
                 <img
                   class="servico__miniatura"
                   src={servico.miniatura}
-                  alt=""
+                  alt={servico.alt}
+                  width="1000"
+                  height="700"
                   loading="lazy"
                   decoding="async"
                 />
-                {servico.titulo}
-              </h3>
-              <p class="servico__texto">{servico.texto}</p>
+              </div>
+              <div class="servico__corpo">
+                <h3 class="servico__titulo">{servico.titulo}</h3>
+                <p class="servico__texto">{servico.texto}</p>
+              </div>
             </div>
-            <a class="botao botao--blush botao--pequeno" href="#contato">
+            <a
+              class="botao botao--blush botao--pequeno"
+              href="#contato"
+              aria-label={`Falar com a equipe sobre ${servico.titulo}`}
+            >
               Saiba mais
             </a>
           </article>

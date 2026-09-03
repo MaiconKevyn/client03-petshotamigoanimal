@@ -82,17 +82,18 @@ chave de API nem cobranca.
 
 ## Imagens
 
-As imagens em `public/assets/img/` sao **recortes do mockup de referencia da
-Behance**, usados apenas como placeholder de layout. Elas pertencem ao tema
-Happy Tails e **nao podem ir para producao**: substitua por fotos do cliente
-(ou por banco de imagens licenciado) antes de publicar no dominio definitivo.
+Parte das imagens em `public/assets/img/` ainda usa recortes do mockup de
+referencia da Behance como placeholder de layout. As seis fotos da lista de
+servicos e a imagem principal do hero foram criadas especificamente para este
+projeto; os demais placeholders devem ser substituidos por fotos do cliente
+(ou por banco de imagens licenciado) antes da publicacao definitiva.
 
 Formatos esperados, mantendo os mesmos nomes de arquivo:
 
 | Arquivo | Proporcao | Onde aparece |
 | --- | --- | --- |
-| `hero-cao.webp` | retrato ~1:2 | animal recortado do hero |
-| `servicos/*.webp` | retrato ~3:4 | 3 cartoes de destaque |
+| `hero-cao-natural.webp` | paisagem 3:2 | imagem principal do hero |
+| `servicos/{atendimento-veterinario,castracao,profilaxia-dentaria,banho-tosa-real,racoes,medicamentos}.webp` | paisagem 10:7 | lista e cartoes de servicos |
 | `internacao.webp`, `hotel.webp` | paisagem ~3:1 | cartoes editoriais |
 | `equipe/vet-0*.webp` | retrato ~3:4 | cartoes da equipe |
 | `dalmata.webp` | ~1:1, fundo `#f6e9ed` | mascote da secao de depoimentos |
