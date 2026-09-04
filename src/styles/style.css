@@ -698,8 +698,9 @@ ul {
   mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
 }
 
-.cartao-destaque--largo .cartao-destaque__foto {
-  width: 52%;
+/* Espelha apenas a foto selecionada, sem inverter texto ou controles do card. */
+.cartao-destaque__foto--espelhada {
+  transform: scaleX(-1);
 }
 
 .cartao-destaque__corpo {
@@ -738,6 +739,185 @@ ul {
   width: 40px;
   height: 40px;
   background: var(--blush);
+}
+
+/* Atendimento: a foto é conteúdo, sem recorte nem sobreposição com o texto. */
+.cartao-destaque--foto-inteira {
+  display: grid;
+  grid-template-columns: minmax(165px, 0.65fr) minmax(0, 1.35fr);
+  grid-template-rows: auto 1fr;
+  column-gap: 18px;
+  padding: 22px 0 0 22px;
+}
+
+.cartao-destaque--foto-inteira .cartao-destaque__foto {
+  position: static;
+  z-index: auto;
+  grid-column: 2;
+  grid-row: 1 / 3;
+  align-self: end;
+  justify-self: end;
+  width: calc(100% + 28px);
+  max-width: 480px;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.cartao-destaque--foto-inteira .chip {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+}
+
+.cartao-destaque--foto-inteira .cartao-destaque__corpo {
+  z-index: 1;
+  grid-column: 1;
+  grid-row: 2;
+  align-self: end;
+  max-width: none;
+  padding-bottom: 22px;
+}
+
+@media (max-width: 600px) {
+  .cartao-destaque--foto-inteira {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 16px;
+    padding: 22px 0 0;
+  }
+
+  .cartao-destaque--foto-inteira .chip,
+  .cartao-destaque--foto-inteira .cartao-destaque__corpo {
+    margin-inline: 22px;
+  }
+
+  .cartao-destaque--foto-inteira .cartao-destaque__corpo {
+    padding-bottom: 0;
+  }
+
+  .cartao-destaque--foto-inteira .cartao-destaque__foto {
+    grid-column: 1;
+    grid-row: 3;
+    width: calc(100% + 12px);
+    max-width: none;
+  }
+}
+
+/* A mesa preenche toda a largura; a proporção garante espaço para a cena inteira. */
+.cartao-destaque--petshop {
+  align-self: stretch;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 4 / 3;
+}
+
+.cartao-destaque--petshop .chip {
+  color: #007e82;
+}
+
+.cartao-destaque--petshop .cartao-destaque__foto {
+  top: auto;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: right bottom;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+/* Comparação restrita ao card de banho e tosa; os outros cards não mudam. */
+.cartao-destaque--banho {
+  overflow: clip;
+  scroll-margin-top: 116px;
+  background: var(--branco);
+}
+
+.comparacao__fotos {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-width: 0;
+}
+
+.comparacao__foto {
+  position: relative;
+  margin: 0;
+  min-width: 0;
+}
+
+.comparacao__foto img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: min(100%, 220px);
+  height: auto;
+  /* O corte lateral da foto coincide com a borda externa, nunca com o meio do card. */
+}
+
+.comparacao__foto:last-child img {
+  left: auto;
+  right: 0;
+}
+
+.comparacao__foto figcaption {
+  position: absolute;
+  top: 18px;
+  left: min(50%, 110px);
+  transform: translateX(-50%);
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--borda-magenta);
+  background: var(--branco);
+  color: #007e82;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.comparacao__foto:last-child figcaption {
+  left: auto;
+  right: min(50%, 110px);
+  transform: translateX(50%);
+}
+
+.comparacao__rodape {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+  padding: 52px 22px 26px;
+  pointer-events: none;
+}
+
+.comparacao__rodape .cartao-destaque__titulo {
+  max-width: none;
+  color: var(--tinta);
+}
+
+.comparacao__rodape .seta-circular {
+  flex: none;
+  background: var(--blush);
+  pointer-events: auto;
+}
+
+.comparacao__nota {
+  position: absolute;
+  bottom: 6px;
+  left: 22px;
+  margin: 0;
+  padding: 2px 4px;
+  background: var(--branco);
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--grafite);
 }
 
 /* --------------------------------------------------------------------------
@@ -898,109 +1078,6 @@ ul {
 }
 
 /* --------------------------------------------------------------------------
-   Dois cartoes editoriais
-   -------------------------------------------------------------------------- */
-
-.duplo {
-  padding: clamp(56px, 7vw, 90px) 0;
-}
-
-.duplo__grade {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.cartao-editorial {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  align-items: flex-end;
-  /* Altura casada com a proporcao das fotos para nao ampliar demais o recorte. */
-  min-height: clamp(320px, 28vw, 410px);
-  padding: 18px;
-  border-radius: var(--raio-cartao);
-  overflow: hidden;
-  color: var(--branco);
-}
-
-.cartao-editorial__foto {
-  position: absolute;
-  z-index: -2;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 45%;
-  transition: scale var(--transicao);
-}
-
-.cartao-editorial:hover .cartao-editorial__foto {
-  scale: 1.04;
-}
-
-.cartao-editorial__marca {
-  position: absolute;
-  z-index: -1;
-  top: 6%;
-  right: 6%;
-  font-size: clamp(3rem, 6.4vw, 5.6rem);
-  font-weight: 500;
-  line-height: 0.85;
-  letter-spacing: -0.04em;
-  text-transform: lowercase;
-  color: rgba(255, 255, 255, 0.5);
-  user-select: none;
-}
-
-.cartao-editorial__painel {
-  width: 100%;
-  display: grid;
-  gap: 16px;
-  padding: 20px 22px 22px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: var(--raio-medio);
-  background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(14px) saturate(1.2);
-}
-
-.cartao-editorial__painel .chip {
-  border-color: rgba(255, 255, 255, 0.55);
-  color: var(--branco);
-  align-self: flex-start;
-}
-
-.cartao-editorial__titulo {
-  font-size: clamp(1.35rem, 1rem + 1.2vw, 1.95rem);
-  max-width: 16ch;
-}
-
-.cartao-editorial__rodape {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.link-seta {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.link-seta svg {
-  width: 16px;
-  height: 16px;
-  transition: translate var(--transicao);
-}
-
-.link-seta:hover svg {
-  translate: 4px 0;
-}
-
-/* --------------------------------------------------------------------------
    Parceiros
    -------------------------------------------------------------------------- */
 
@@ -1149,8 +1226,7 @@ ul {
 }
 
 .depoimentos__janela:hover .depoimentos__trilho,
-.depoimentos__janela:focus-within .depoimentos__trilho,
-.depoimentos[data-pausado='true'] .depoimentos__trilho {
+.depoimentos__janela:focus-within .depoimentos__trilho {
   animation-play-state: paused;
 }
 
@@ -1219,46 +1295,6 @@ ul {
   color: var(--magenta);
 }
 
-.depoimentos__controles {
-  position: relative;
-  z-index: 4;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.depoimentos__controle {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border: 1px solid var(--borda-magenta);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.72);
-  color: var(--framboesa);
-  transition: background-color var(--transicao), color var(--transicao);
-}
-
-.depoimentos__controle:hover,
-.depoimentos__controle[aria-pressed='true'] {
-  background: var(--magenta);
-  color: var(--branco);
-}
-
-.depoimentos__controle span {
-  display: grid;
-  place-items: center;
-}
-
-.depoimentos__controle span[hidden] {
-  display: none;
-}
-
-.depoimentos__controle svg {
-  width: 14px;
-  height: 14px;
-}
-
 .depoimentos__rodape {
   position: relative;
   z-index: 2;
@@ -1283,7 +1319,12 @@ ul {
   z-index: 3;
   bottom: 0;
   left: clamp(4%, 12vw, 20%);
-  width: clamp(150px, 17vw, 264px);
+  width: clamp(180px, 20vw, 288px);
+  height: auto;
+  /* A foto tem fundo opaco: recorte apenas a silhueta, sem bloquear o trilho. */
+  -webkit-mask: url('/assets/img/dalmata-contorno.svg') center / 100% 100% no-repeat;
+  mask: url('/assets/img/dalmata-contorno.svg') center / 100% 100% no-repeat;
+  mask-mode: alpha;
 }
 
 /* --------------------------------------------------------------------------
@@ -1806,7 +1847,6 @@ ul {
   }
 
   .destaques__grade,
-  .duplo__grade,
   .equipe__grade,
   .rodape__grade {
     grid-template-columns: minmax(0, 1fr);
@@ -1822,20 +1862,6 @@ ul {
 
   .cartao-destaque__foto {
     width: 46%;
-  }
-
-  .cartao-editorial {
-    min-height: 300px;
-  }
-
-  .cartao-editorial__foto {
-    object-position: center 40%;
-  }
-
-  .cartao-editorial__rodape {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
   }
 
   .servicos__etiquetas {
@@ -1876,8 +1902,7 @@ ul {
     animation: none;
   }
 
-  .depoimentos__grupo[aria-hidden='true'],
-  .depoimentos__controles {
+  .depoimentos__grupo[aria-hidden='true'] {
     display: none;
   }
 

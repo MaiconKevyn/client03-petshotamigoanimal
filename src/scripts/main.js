@@ -1,5 +1,5 @@
 // Comportamentos do site: menu movel, cabecalho colado, trilho de
-// depoimentos e botao de voltar ao topo.
+// carrossel de depoimentos e botao de voltar ao topo.
 
 const menu = document.querySelector('[data-menu]');
 const navegacao = document.getElementById('menu-principal');
@@ -30,29 +30,6 @@ const aoRolar = () => {
 
 aoRolar();
 window.addEventListener('scroll', aoRolar, { passive: true });
-
-const secaoDepoimentos = document.querySelector('[data-depoimentos]');
-const controleDepoimentos = document.querySelector('[data-depoimentos-controle]');
-
-if (secaoDepoimentos && controleDepoimentos instanceof HTMLButtonElement) {
-  const iconePausa = controleDepoimentos.querySelector('[data-icone-pausa]');
-  const iconePlay = controleDepoimentos.querySelector('[data-icone-play]');
-
-  controleDepoimentos.addEventListener('click', () => {
-    const pausado = secaoDepoimentos.getAttribute('data-pausado') === 'true';
-    const proximoEstado = !pausado;
-
-    secaoDepoimentos.setAttribute('data-pausado', String(proximoEstado));
-    controleDepoimentos.setAttribute('aria-pressed', String(proximoEstado));
-    controleDepoimentos.setAttribute(
-      'aria-label',
-      proximoEstado ? 'Continuar carrossel de depoimentos' : 'Pausar carrossel de depoimentos',
-    );
-
-    if (iconePausa instanceof HTMLElement) iconePausa.hidden = proximoEstado;
-    if (iconePlay instanceof HTMLElement) iconePlay.hidden = !proximoEstado;
-  });
-}
 
 const assinatura = document.querySelector('[data-assinatura]');
 const aviso = document.querySelector('[data-assinatura-aviso]');

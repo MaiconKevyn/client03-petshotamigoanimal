@@ -1,5 +1,6 @@
 ---
 import Icone from './Icone.astro';
+import AntesDepois from './AntesDepois.astro';
 import { destaques } from '../data/site';
 ---
 
@@ -16,23 +17,32 @@ import { destaques } from '../data/site';
     <div class="destaques__grade">
       {
         destaques.map((item) => (
-          <article class={`cartao-destaque${item.largo ? ' cartao-destaque--largo' : ''}`}>
-            <img
-              class="cartao-destaque__foto"
-              src={item.foto}
-              alt={item.alt}
-              loading="lazy"
-              decoding="async"
-            />
-            <span class="chip">{item.chip}</span>
-            <div class="cartao-destaque__corpo">
-              <h3 class="cartao-destaque__titulo">{item.titulo}</h3>
-              <p class="cartao-destaque__texto">{item.texto}</p>
-              <a class="seta-circular" href="#servicos" aria-label={`Saiba mais sobre ${item.titulo}`}>
-                <Icone nome="seta" />
-              </a>
-            </div>
-          </article>
+          'comparacao' in item ? <AntesDepois titulo={item.titulo} /> : (
+            <article class={`cartao-destaque${item.largo ? ' cartao-destaque--largo' : ''}${'fotoInteira' in item ? ' cartao-destaque--foto-inteira' : ''}${'fotoProduto' in item ? ' cartao-destaque--petshop' : ''}`}>
+              <img
+                class:list={[
+                  'cartao-destaque__foto',
+                  { 'cartao-destaque__foto--espelhada': 'espelharFoto' in item && item.espelharFoto },
+                ]}
+                src={item.foto}
+                srcset={'fotoCompacta' in item ? `${item.fotoCompacta} 640w, ${item.foto} ${item.larguraFoto}w` : undefined}
+                sizes={'fotoCompacta' in item ? ('tamanhosFoto' in item ? item.tamanhosFoto : '(max-width: 480px) 60vw, 280px') : undefined}
+                alt={item.alt}
+                width={'larguraFoto' in item ? item.larguraFoto : undefined}
+                height={'alturaFoto' in item ? item.alturaFoto : undefined}
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="chip">{item.chip}</span>
+              <div class="cartao-destaque__corpo">
+                <h3 class="cartao-destaque__titulo">{item.titulo}</h3>
+                <p class="cartao-destaque__texto">{item.texto}</p>
+                <a class="seta-circular" href="#servicos" aria-label={`Saiba mais sobre ${item.titulo}`}>
+                  <Icone nome="seta" />
+                </a>
+              </div>
+            </article>
+          )
         ))
       }
     </div>

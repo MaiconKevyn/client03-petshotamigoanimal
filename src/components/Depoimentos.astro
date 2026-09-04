@@ -5,7 +5,7 @@ import { depoimentos } from '../data/site';
 const grupos = [false, true] as const;
 ---
 
-<section class="depoimentos" id="depoimentos" data-depoimentos>
+<section class="depoimentos" id="depoimentos">
   <div class="container">
     <h2 class="visualmente-oculto">O que dizem nossos clientes</h2>
 
@@ -34,19 +34,6 @@ const grupos = [false, true] as const;
           ))
         }
       </div>
-    </div>
-
-    <div class="depoimentos__controles">
-      <button
-        class="depoimentos__controle"
-        type="button"
-        data-depoimentos-controle
-        aria-pressed="false"
-        aria-label="Pausar carrossel de depoimentos"
-      >
-        <span data-icone-pausa><Icone nome="pausa" /></span>
-        <span data-icone-play hidden><Icone nome="play" /></span>
-      </button>
     </div>
   </div>
 
