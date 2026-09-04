@@ -547,34 +547,186 @@ ul {
   color: rgba(255, 244, 247, 0.86);
 }
 
-.hero__midia {
-  justify-self: end;
-  width: min(160px, 100%);
-  border-radius: var(--raio-medio);
-  overflow: hidden;
+.avaliacao-petlove {
+  --petlove-roxo: #4e2096;
+  --glass-light-x: 18%;
+  --glass-light-y: 0%;
   position: relative;
-  background: rgba(255, 244, 247, 0.14);
-  backdrop-filter: blur(4px);
-}
-
-.hero__midia img {
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-  object-position: center 30%;
-}
-
-.hero__midia-conteudo {
-  position: absolute;
-  inset: auto 0 0;
   display: grid;
   justify-items: center;
-  gap: 12px;
-  padding: 26px 12px 16px;
-  background: linear-gradient(180deg, rgba(163, 0, 63, 0) 0%, rgba(163, 0, 63, 0.72) 62%);
+  justify-self: end;
+  gap: 10px;
+  width: min(180px, 100%);
+  padding: 20px 16px;
+  border: 1px solid rgba(255, 224, 235, 0.8);
+  border-radius: var(--raio-medio);
+  /* Só o fundo é translúcido: marca, nota e textos mantêm opacidade total. */
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(16px) saturate(1.35);
+  backdrop-filter: blur(16px) saturate(1.35);
+  box-shadow: 0 3px 8px rgba(88, 9, 44, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.96), inset 0 -1px 0 rgba(183, 82, 118, 0.12);
+  color: var(--petlove-roxo);
   text-align: center;
+  line-height: 1.3;
+  transition: box-shadow 240ms ease, transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Bisel interno e aro especular separados do conteúdo e da área clicável. */
+.avaliacao-petlove::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.75), inset -2px -2px 4px rgba(209, 101, 144, 0.12);
+  pointer-events: none;
+}
+
+@supports (mask-composite: exclude) or (-webkit-mask-composite: xor) {
+  .avaliacao-petlove::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    padding: 4px;
+    border-radius: calc(var(--raio-medio) + 4px);
+    background:
+      radial-gradient(130px circle at var(--glass-light-x) var(--glass-light-y), rgba(255, 255, 255, 0.98), rgba(255, 230, 242, 0.6) 30%, transparent 72%),
+      linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 191, 217, 0.42) 28%, rgba(206, 80, 128, 0.24) 48%, rgba(255, 228, 238, 0.76) 70%, rgba(255, 255, 255, 0.92));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.85;
+    transition: opacity 240ms ease;
+  }
+
+  .avaliacao-petlove:focus-visible::before {
+    opacity: 1;
+  }
+
+  @media (hover: hover) {
+    .avaliacao-petlove:hover::before {
+      opacity: 1;
+    }
+  }
+}
+
+@media (hover: hover) {
+  .avaliacao-petlove:hover {
+    box-shadow: 0 4px 8px rgba(88, 9, 44, 0.2), inset 0 1px 0 #fff, inset 0 -1px 0 rgba(183, 82, 118, 0.16);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .avaliacao-petlove:active {
+    transform: scale(0.985);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .avaliacao-petlove {
+    background: var(--branco);
+    border-color: var(--petlove-roxo);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+
+  .avaliacao-petlove::before,
+  .avaliacao-petlove::after {
+    content: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .avaliacao-petlove {
+    border-color: LinkText;
+    background: Canvas;
+    color: LinkText;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .avaliacao-petlove::before,
+  .avaliacao-petlove::after {
+    content: none;
+  }
+}
+
+.avaliacao-petlove__cabecalho,
+.avaliacao-petlove__resumo {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+.avaliacao-petlove__cabecalho img {
+  width: 130px;
+  height: auto;
+}
+
+.avaliacao-petlove__origem {
+  color: var(--grafite);
+  font-size: 11px;
+}
+
+.avaliacao-petlove__nota {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.avaliacao-petlove__nota strong {
+  font-size: 52px;
+  font-weight: 600;
+}
+
+.avaliacao-petlove__estrelas {
+  display: flex;
+  gap: 4px;
+}
+
+.avaliacao-petlove__estrelas svg {
+  width: 18px;
+  height: 18px;
+}
+
+.avaliacao-petlove__total {
+  color: var(--grafite);
   font-size: 13px;
-  line-height: 1.25;
+}
+
+.avaliacao-petlove__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.avaliacao-petlove__link svg {
+  width: 16px;
+  height: 16px;
+}
+
+.avaliacao-petlove:hover .avaliacao-petlove__link,
+.avaliacao-petlove:focus-visible .avaliacao-petlove__link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.avaliacao-petlove:focus-visible {
+  outline: 3px solid var(--petlove-roxo);
+  outline-offset: 9px;
+}
+
+@media (forced-colors: active) {
+  .avaliacao-petlove:focus-visible {
+    outline-color: Highlight;
+  }
 }
 
 .hero__animal {
@@ -869,18 +1021,6 @@ ul {
   pointer-events: auto;
 }
 
-.comparacao__nota {
-  position: absolute;
-  bottom: 6px;
-  left: 22px;
-  margin: 0;
-  padding: 2px 4px;
-  background: var(--branco);
-  font-size: 10px;
-  line-height: 12px;
-  color: var(--grafite);
-}
-
 /* --------------------------------------------------------------------------
    Lista de servicos (secao areia)
    -------------------------------------------------------------------------- */
@@ -1163,7 +1303,30 @@ ul {
   padding: clamp(64px, 8vw, 104px) 0 0;
   background: var(--blush);
   border-radius: 50% 50% 0 0 / clamp(60px, 9vw, 130px) clamp(60px, 9vw, 130px) 0 0;
-  overflow: hidden;
+  /* As patas podem sair da seção; o trilho segue recortado pela sua janela. */
+  overflow: visible;
+}
+
+.depoimentos__fonte {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  margin: 0 0 20px auto;
+  color: var(--framboesa);
+  font-size: 13px;
+  text-underline-offset: 3px;
+}
+
+.depoimentos__fonte svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.depoimentos__fonte:hover,
+.depoimentos__fonte:focus-visible {
+  text-decoration: underline;
 }
 
 .depoimentos__janela {
@@ -1199,7 +1362,8 @@ ul {
 
 .depoimento {
   flex: 0 0 clamp(286px, 24vw, 330px);
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 18px;
   min-height: 205px;
   padding: 22px;
@@ -1208,15 +1372,7 @@ ul {
   background: transparent;
 }
 
-.depoimento__titulo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.05rem;
-  font-weight: 500;
-}
-
-.depoimento__titulo svg {
+.depoimento__aspas {
   width: 18px;
   height: 18px;
   color: var(--turquesa);
@@ -1224,36 +1380,21 @@ ul {
 }
 
 .depoimento__texto {
-  font-size: 13.5px;
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--grafite);
 }
 
 .depoimento__autor {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   margin-top: auto;
-}
-
-.depoimento__autor img {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center 20%;
 }
 
 .depoimento__nome {
   font-size: 15px;
   font-weight: 600;
-}
-
-.depoimento__papel {
-  font-size: 10.5px;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--magenta);
 }
 
 .depoimentos__rodape {
@@ -1282,10 +1423,9 @@ ul {
   left: clamp(4%, 12vw, 20%);
   width: clamp(180px, 20vw, 288px);
   height: auto;
-  /* A foto tem fundo opaco: recorte apenas a silhueta, sem bloquear o trilho. */
-  -webkit-mask: url('/assets/img/dalmata-contorno.svg') center / 100% 100% no-repeat;
-  mask: url('/assets/img/dalmata-contorno.svg') center / 100% 100% no-repeat;
-  mask-mode: alpha;
+  /* Os últimos 55 de 1179 px são as pontas das patas, abaixo da base do peito. */
+  transform: translateY(4.665%);
+  /* O arquivo já tem transparência real; não aplicar outro recorte sobre os pelos. */
 }
 
 /* --------------------------------------------------------------------------
@@ -1731,10 +1871,40 @@ ul {
 
   .hero__grade {
     grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
   }
 
-  .hero__midia {
-    display: none;
+  .avaliacao-petlove {
+    justify-self: start;
+    width: min(328px, 100%);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 6px 16px;
+    padding: 16px;
+  }
+
+  .avaliacao-petlove__cabecalho {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .avaliacao-petlove__resumo {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+
+  .avaliacao-petlove__nota strong {
+    font-size: 42px;
+  }
+
+  .avaliacao-petlove__total {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .avaliacao-petlove__link {
+    grid-column: 1 / -1;
+    margin-top: 4px;
   }
 
   .equipe__grade {

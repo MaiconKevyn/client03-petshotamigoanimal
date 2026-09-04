@@ -46,6 +46,40 @@ Os dados editaveis estao em `src/data/site.ts` e `src/data/banho-tosa.ts`. A apa
 
 ## Design system
 
+### Avaliações na Petlove
+
+O card do topo usa `AvaliacaoPetlove.astro`, com logo vetorial oficial, nota e
+quantidade de avaliações em texto acessível. Todo o card abre o perfil da clínica
+na Petlove em uma nova aba, com `noopener noreferrer`; no celular, ele aparece
+em formato compacto abaixo da apresentação.
+
+O fundo branco tem **90% de opacidade**, sem reduzir a opacidade de logo, nota e
+textos. A aproximação web de Liquid Glass combina `backdrop-filter`, um bisel
+interno e um aro especular rosado de 4 px. O reflexo acompanha o mouse com
+`requestAnimationFrame`, sem animação contínua, bibliotecas ou distorção do texto.
+O link funciona mesmo sem JavaScript; as camadas decorativas não interceptam cliques.
+
+O acabamento segue as referências [Meet Liquid Glass (Apple)](https://developer.apple.com/videos/play/wwdc2025/219/)
+e [backdrop-filter (MDN)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter),
+sem pretender reproduzir a refração nativa do sistema Apple. Sem `backdrop-filter`,
+o fundo continua a 90%; sem composição de máscaras, o aro vira uma borda simples.
+Movimento reduzido desativa o reflexo dinâmico e a resposta de escala;
+transparência reduzida/contraste aumentado
+usam fundo opaco. Cores forçadas preservam a borda e o foco do teclado.
+
+A consulta manual de 04/09/2026 confirmou **5,0/5 e 33 avaliações** em
+[Amigo Animal na Petlove](https://saude.petlove.com.br/rede-credenciada/rs/porto-alegre/amigo-animal-pet-shop).
+URL, nota, quantidade e data ficam em `avaliacaoPetlove`, em `src/data/site.ts`.
+Os números não são atualizados automaticamente: confira o perfil ao revisá-los.
+Não foi adicionado selo de certificação nem marcação estruturada de avaliações.
+
+`public/assets/img/petlove-logo.svg` preserva os caminhos e cores da marca
+Petlove do [SVG oficial](https://health-frontend-statics-prod.petlove.com.br/jigglypuff/_nuxt/petlove-health-logo-purple.CDkc9gQp.svg),
+sem o descritor separado de plano de saúde. A prévia gerada serviu como referência
+visual; o card publicado é HTML/CSS, com logo SVG e estrelas vetoriais.
+
+### Paleta e tipografia
+
 O **layout e a estrutura** vem da referencia Happy Tails; as **cores** vem da
 marca do cliente (`assets/branding/`).
 
@@ -74,8 +108,16 @@ Reais e ja aplicados em `src/data/site.ts`:
 - Instagram: `https://www.instagram.com/petshopamigoanimal3`
 - Telefone: (51) 98564-8001
 
-Ainda **PLACEHOLDER** (marcado no arquivo): horario de atendimento, nomes da
-equipe e depoimentos. Nao ha e-mail publicado — se o cliente tiver um, adicione
+O carrossel usa quatro avaliações públicas verificadas na Petlove em 04/09/2026,
+com textos originais e nomes publicados (apenas a capitalização foi normalizada).
+A seleção em `depoimentos`, em `src/data/site.ts`, não repete autores, não usa
+fotos, títulos inventados ou identidades fictícias. O link da fonte fica acima
+dos cards e cada citação usa a URL do perfil. A seleção é manual e não representa
+a totalidade das avaliações. O segundo grupo de cards é somente a cópia técnica
+para o loop contínuo, oculta de leitores de tela; não são avaliações adicionais.
+
+Ainda **PLACEHOLDER**: horario de atendimento e nomes da
+equipe. Nao ha e-mail publicado — se o cliente tiver um, adicione
 em `site.ts` e no rodape.
 
 O mapa usa `https://www.google.com/maps?q=...&output=embed`, que nao exige
@@ -99,7 +141,7 @@ Formatos esperados, mantendo os mesmos nomes de arquivo:
 | `servicos/racoes-gato-mesa-inteira.webp` | paisagem 4:3 com fundo branco | gato e pote a direita, mesa de ponta a ponta no card Racoes e medicamentos; versao `-640.webp` via `srcset` |
 | `banho-tosa/estudio-{antes,depois}-branco.webp` | retratos 4:5 com fundo branco | dupla antes/depois no card; versoes `-branco-640.webp` via `srcset` |
 | `equipe/vet-0*.webp` | retrato ~3:4 | cartoes da equipe |
-| `dalmata.webp` + `dalmata-contorno.svg` | ~1:1, recorte por mascara alfa | mascote em primeiro plano na secao de depoimentos |
+| `cao-cliente-transparente.webp` | ~1:1, transparencia alfa real | retrato de cao atendido pela clinica, aprimorado com IA, em primeiro plano nos depoimentos; versao `-576.webp` via `srcset` |
 
 O card de Atendimento veterinario usa uma extensao generativa da imagem enviada
 pelo cliente em `codex-clipboard-21e5771f-c237-4740-9f96-7ddcb235a3b7.png`.
@@ -125,11 +167,20 @@ minima 4:3 do card evita cortar as orelhas nas telas mais largas. Ha versoes
 WebP de 1448 x 1086 e 640 x 480 pixels, selecionadas por `srcset`.
 A foto anterior continua na lista de servicos.
 
-A foto original do dalmata possui fundo opaco. A mascara vetorial
-`dalmata-contorno.svg` acompanha a silhueta com curvas e suavizacao subpixel:
-assim, o carrossel permanece visivel ao redor das orelhas, cabeca e patas.
-Ao trocar a foto, atualize tambem a mascara ou use uma imagem com transparencia
-real e remova o `mask` de `.depoimentos__cao`.
+O mascote dos depoimentos foi substituido por um retrato gerado com IA a partir
+da foto fornecida de um cao atendido pela clinica: pelagem tigrada, coleira laranja
+e peitoral rosa. A pose foi adaptada para a composicao em primeiro plano;
+nao se trata da fotografia original nem de recuperacao documental de detalhes.
+O novo PNG recortado fornecido pelo cliente foi convertido para
+`cao-cliente-transparente.webp` (1334 x 1179 pixels), com uma versao de
+576 x 509 pixels para telas menores. Ambos usam WebP lossless com transparencia
+alfa real; o alfa do arquivo em tamanho integral foi preservado exatamente.
+Nao ha mais mascara SVG/CSS sobre a imagem: o contorno e a transparencia dos
+pelos sao os do arquivo fornecido, sem regeneracao ou novo retoque do animal.
+A posicao e a largura responsiva foram mantidas, assim como o deslocamento de
+4,665% que deixa apenas as pontas das patas sobre a area branca. Os arquivos
+antigos com fundo opaco e a mascara `cao-cliente-contorno.svg` nao sao mais
+referenciados pela UI.
 
 ### Antes e depois do banho e tosa
 
@@ -144,15 +195,15 @@ turquesa escuro. O titulo usa texto escuro e o botao tem fundo blush. Os retrato
 ficam alinhados a borda inferior e as bordas externas do card: Antes a esquerda
 e Depois a direita. As legendas acompanham cada retrato. Nao ha mascaras,
 degrade no rodape ou recorte nos containers internos. Os arquivos dos retratos
-nao foram regenerados nesta revisao. Apenas o pequeno aviso de IA tem fundo
-branco para garantir sua leitura.
+nao foram regenerados nesta revisao.
 
 A dupla aprovada substitui a exibicao dos dois casos antigos. Nao ha carrossel,
 animacao, controles de troca ou JavaScript neste card. A seta no rodape abre o
 WhatsApp com uma mensagem especifica de banho e tosa, sem enviar automaticamente.
 As imagens fornecidas pelo cliente foram geradas/aprimoradas por IA; nao sao
 fotografias originais nem comprovam recuperacao fiel de cada fio da pelagem.
-A indicacao "Imagens aprimoradas com IA" permanece visivel.
+O aviso visual de IA foi removido do card a pedido do cliente; a origem das
+imagens permanece registrada aqui e na descricao acessivel do grupo de fotos.
 
 Os WebP de 1122 x 1402 pixels somam aproximadamente 458 KB, com versoes de
 640 x 800 pixels (181 KB no total) servidas via `srcset` e carregamento tardio.
@@ -162,8 +213,8 @@ temporarios de geracao e scripts experimentais nao fazem parte do site publicado
 Para trocar a dupla, atualize `resultadoBanhoTosa` em `src/data/banho-tosa.ts`
 com as fotos do mesmo pet antes/depois, `foto`, `fotoCompacta` de 640 pixels de largura,
 e dimensoes individuais. Os retratos sao ancorados nas bordas externas pelo CSS. Prefira fotografias
-originais em alta resolucao quando disponiveis; mantenha a indicacao de IA
-enquanto o card utilizar imagens regeneradas.
+originais em alta resolucao quando disponiveis e atualize o registro de origem
+ao substituir as imagens.
 
 ### Marca
 

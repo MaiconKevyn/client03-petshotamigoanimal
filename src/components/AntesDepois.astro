@@ -17,7 +17,6 @@ const agendamento = `${site.whatsapp}?text=${encodeURIComponent(
   class="cartao-destaque cartao-destaque--banho"
   id="antes-depois"
   aria-labelledby="titulo-banho-tosa"
-  aria-describedby="nota-imagens-banho-tosa"
 >
   <div class="comparacao__fotos" role="group" aria-label="Antes e depois do banho e tosa, com imagens aprimoradas por IA">
     {(['antes', 'depois'] as const).map((etapa) => (
@@ -42,6 +41,5 @@ const agendamento = `${site.whatsapp}?text=${encodeURIComponent(
     <a class="seta-circular" href={agendamento} target="_blank" rel="noopener noreferrer" aria-label="Agendar banho e tosa pelo WhatsApp">
       <Icone nome="seta" />
     </a>
-    <p class="comparacao__nota" id="nota-imagens-banho-tosa">Imagens aprimoradas com IA</p>
   </div>
 </article>

@@ -1,33 +1,38 @@
 ---
 import Icone from './Icone.astro';
-import { depoimentos } from '../data/site';
+import { avaliacaoPetlove, depoimentos } from '../data/site';
 
 const grupos = [false, true] as const;
 ---
 
 <section class="depoimentos" id="depoimentos">
   <div class="container">
-    <h2 class="visualmente-oculto">O que dizem nossos clientes</h2>
+    <h2 class="visualmente-oculto">O que dizem nossos clientes na Petlove</h2>
 
-    <div class="depoimentos__janela" aria-label="Depoimentos de clientes">
+    <a
+      class="depoimentos__fonte"
+      href={avaliacaoPetlove.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Ver as avaliações publicadas na Petlove. Abre em uma nova aba."
+    >
+      Avaliações publicadas na Petlove <Icone nome="setaDiagonal" />
+    </a>
+
+    <div class="depoimentos__janela" aria-label="Seleção de avaliações de clientes na Petlove">
       <div class="depoimentos__trilho">
         {
           grupos.map((duplicado) => (
             <div class="depoimentos__grupo" aria-hidden={duplicado ? 'true' : undefined}>
               {depoimentos.map((item) => (
                 <article class="depoimento">
-                  <h3 class="depoimento__titulo">
-                    <Icone nome="aspas" />
-                    {item.titulo}
-                  </h3>
-                  <p class="depoimento__texto">{item.texto}</p>
-                  <div class="depoimento__autor">
-                    <img src={item.foto} alt="" loading="lazy" decoding="async" />
-                    <div>
-                      <p class="depoimento__nome">{item.nome}</p>
-                      <p class="depoimento__papel">Cliente da clínica</p>
-                    </div>
-                  </div>
+                  <blockquote class="depoimento__texto" cite={avaliacaoPetlove.url}>
+                    <Icone nome="aspas" class="depoimento__aspas" />
+                    <p>{item.texto}</p>
+                  </blockquote>
+                  <footer class="depoimento__autor">
+                    <h3 class="depoimento__nome">{item.nome}</h3>
+                  </footer>
                 </article>
               ))}
             </div>
@@ -41,12 +46,15 @@ const grupos = [false, true] as const;
     <p class="fantasma" aria-hidden="true">clientes</p>
     <img
       class="depoimentos__cao"
-      src="/assets/img/dalmata.webp"
+      src="/assets/img/cao-cliente-transparente-576.webp"
+      srcset="/assets/img/cao-cliente-transparente-576.webp 576w, /assets/img/cao-cliente-transparente.webp 1334w"
+      sizes="(max-width: 900px) 180px, (max-width: 1440px) 20vw, 288px"
       alt=""
-      width="288"
-      height="259"
+      width="1334"
+      height="1179"
       loading="lazy"
       decoding="async"
+      title="Imagem aprimorada com IA a partir da foto de um cão atendido pela clínica"
     />
   </div>
 </section>

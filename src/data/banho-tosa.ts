@@ -1,5 +1,5 @@
 // Dupla escolhida pelo cliente, agora sobre fundo branco uniforme.
-// Retratos aprimorados com IA; a indicação permanece visível no card.
+// Retratos aprimorados com IA, conforme a origem registrada no README.
 export const resultadoBanhoTosa = {
   antes: {
     foto: '/assets/img/banho-tosa/estudio-antes-branco.webp',

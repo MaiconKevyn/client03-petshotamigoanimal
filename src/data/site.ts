@@ -22,6 +22,15 @@ export const site = {
     'https://www.google.com/maps/search/?api=1&query=Rua+dos+Maias+1970%2C+Porto+Alegre%2C+RS',
 } as const;
 
+// Consulta manual ao perfil da clínica; não é uma integração em tempo real.
+export const avaliacaoPetlove = {
+  url: 'https://saude.petlove.com.br/rede-credenciada/rs/porto-alegre/amigo-animal-pet-shop',
+  nota: 5,
+  notaMaxima: 5,
+  total: 33,
+  consultadaEm: '2026-09-04',
+} as const;
+
 export const navegacao = [
   { rotulo: 'Início', href: '#topo', atual: true },
   { rotulo: 'Serviços', href: '#servicos' },
@@ -136,33 +145,24 @@ export const equipe = [
   },
 ] as const;
 
+// Avaliações públicas verificadas na URL de avaliacaoPetlove em 04/09/2026.
+// Textos originais e autores distintos; não inventar identidades ou depoimentos.
+// A seleção é manual e não representa todas as avaliações da plataforma.
 export const depoimentos = [
   {
-    titulo: 'Cuidado de verdade',
-    texto:
-      '“Levo a Mel desde filhote e sempre fui muito bem atendida. A equipe explica cada passo e o retorno é sempre rápido.”',
-    nome: 'Marina R.',
-    foto: '/assets/img/equipe/vet-01.webp',
+    texto: 'Dra atenciosa e querida. Clínica com boa estrutura e limpa',
+    nome: 'Robson',
   },
   {
-    titulo: 'Profissionais de confiança',
-    texto:
-      '“Da consulta de rotina à emergência, sempre estiveram presentes. A competência e o carinho passam segurança total.”',
-    nome: 'Henrique G.',
-    foto: '/assets/img/equipe/vet-03.webp',
+    texto: 'Veterinária Ju muito atenciosa e querida',
+    nome: 'Brayan',
   },
   {
-    titulo: 'Equipe atenciosa',
-    texto:
-      '“Excelente atendimento, equipe simpática e cuidado veterinário impecável. Tratam cada pet como família.”',
-    nome: 'Tainá S.',
-    foto: '/assets/img/equipe/vet-02.webp',
+    texto: 'Atendimento maravilhoso.',
+    nome: 'Ana',
   },
   {
-    titulo: 'Estrutura impecável',
-    texto:
-      '“A clínica é moderna, acolhedora e a equipe é formada por profissionais de primeira. Confiamos de olhos fechados.”',
-    nome: 'Bruno M.',
-    foto: '/assets/img/equipe/vet-02.webp',
+    texto: 'Fui bem atendido',
+    nome: 'Fabio',
   },
 ] as const;

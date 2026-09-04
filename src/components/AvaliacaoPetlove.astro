@@ -1,0 +1,72 @@
+---
+import Icone from './Icone.astro';
+import { avaliacaoPetlove } from '../data/site';
+
+const { url, nota, notaMaxima, total, consultadaEm } = avaliacaoPetlove;
+const notaFormatada = nota.toLocaleString('pt-BR', { minimumFractionDigits: 1 });
+const dataConsulta = consultadaEm.split('-').reverse().join('/');
+---
+
+<a
+  class="avaliacao-petlove"
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={`Ver ${total} avaliações do Amigo Animal na Petlove, nota ${notaFormatada} de ${notaMaxima}. Abre em uma nova aba.`}
+  title={`Nota consultada em ${dataConsulta}. Veja as avaliações atualizadas na Petlove.`}
+>
+  <span class="avaliacao-petlove__cabecalho">
+    <img src="/assets/img/petlove-logo.svg" alt="Petlove" width="108" height="25" />
+    <span class="avaliacao-petlove__origem">Avaliações de clientes</span>
+  </span>
+  <span class="avaliacao-petlove__resumo">
+    <span class="avaliacao-petlove__nota">
+      <strong>{notaFormatada}</strong><span>/ {notaMaxima}</span>
+    </span>
+    <span class="avaliacao-petlove__estrelas" aria-hidden="true">
+      {Array.from({ length: notaMaxima }, () => <Icone nome="estrela" />)}
+    </span>
+  </span>
+  <span class="avaliacao-petlove__total">{total} avaliações</span>
+  <span class="avaliacao-petlove__link">Ver avaliações <Icone nome="setaDiagonal" /></span>
+</a>
+
+<script>
+  // O reflexo acompanha o ponteiro, sem inclinar o conteúdo nem animar em repouso.
+  const interacao = window.matchMedia(
+    '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) and (prefers-reduced-transparency: no-preference) and (prefers-contrast: no-preference) and (forced-colors: none)',
+  );
+
+  document.querySelectorAll<HTMLElement>('.avaliacao-petlove').forEach((card) => {
+    let quadro = 0;
+    let x = 18;
+    let y = 0;
+
+    const restaurar = () => {
+      window.cancelAnimationFrame(quadro);
+      quadro = 0;
+      card.style.removeProperty('--glass-light-x');
+      card.style.removeProperty('--glass-light-y');
+    };
+
+    card.addEventListener('pointermove', (evento) => {
+      if (!interacao.matches || evento.pointerType === 'touch') return;
+
+      const area = card.getBoundingClientRect();
+      x = Math.max(0, Math.min(100, ((evento.clientX - area.left) / area.width) * 100));
+      y = Math.max(0, Math.min(100, ((evento.clientY - area.top) / area.height) * 100));
+
+      if (quadro) return;
+      quadro = window.requestAnimationFrame(() => {
+        card.style.setProperty('--glass-light-x', `${x.toFixed(1)}%`);
+        card.style.setProperty('--glass-light-y', `${y.toFixed(1)}%`);
+        quadro = 0;
+      });
+    }, { passive: true });
+
+    card.addEventListener('pointerleave', restaurar);
+    card.addEventListener('pointercancel', restaurar);
+    card.addEventListener('blur', restaurar);
+    interacao.addEventListener('change', restaurar);
+  });
+</script>
