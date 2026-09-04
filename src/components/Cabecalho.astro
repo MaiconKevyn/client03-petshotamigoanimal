@@ -11,7 +11,7 @@ const { sobreHero = true } = Astro.props;
 ---
 
 {sobreHero && (
-<div class="topo">
+<div class="topo" role="region" aria-label="Informações de atendimento">
   <div class="container topo__barra">
     <a class="topo__item" href={site.telefoneLink}>
       <Icone nome="telefone" />

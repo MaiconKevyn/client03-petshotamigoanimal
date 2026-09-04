@@ -1,6 +1,6 @@
 ---
 import Icone from './Icone.astro';
-import { servicos } from '../data/site';
+import { servicos, site } from '../data/site';
 ---
 
 <section class="servicos" id="servicos">
@@ -43,10 +43,12 @@ import { servicos } from '../data/site';
             </div>
             <a
               class="botao botao--blush botao--pequeno"
-              href="#contato"
-              aria-label={`Falar com a equipe sobre ${servico.titulo}`}
+              href={`${site.whatsapp}?text=${encodeURIComponent(servico.mensagemWhatsApp)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${servico.acao} pelo WhatsApp. Abre em uma nova aba.`}
             >
-              Saiba mais
+              {servico.acao}
             </a>
           </article>
         ))

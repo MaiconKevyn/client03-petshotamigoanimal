@@ -1,5 +1,11 @@
 ---
 import AvaliacaoPetlove from './AvaliacaoPetlove.astro';
+import Icone from './Icone.astro';
+import { site } from '../data/site';
+
+const mensagemHero = encodeURIComponent(
+  'Olá! Vim pelo site do Amigo Animal e gostaria de falar com a equipe sobre o atendimento do meu pet.',
+);
 ---
 
 <section class="hero" id="topo">
@@ -21,6 +27,16 @@ import AvaliacaoPetlove from './AvaliacaoPetlove.astro';
         Na nossa clínica e pet shop, cada animal recebe cuidado atencioso e de alta qualidade
         em todas as fases da vida — do primeiro filhote ao companheiro de sempre.
       </p>
+      <a
+        class="hero__cta-mobile botao botao--magenta"
+        href={`${site.whatsapp}?text=${mensagemHero}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Falar com a equipe do Amigo Animal pelo WhatsApp. Abre em uma nova aba."
+      >
+        <Icone nome="whatsapp" />
+        Falar no WhatsApp
+      </a>
     </div>
 
     <AvaliacaoPetlove />

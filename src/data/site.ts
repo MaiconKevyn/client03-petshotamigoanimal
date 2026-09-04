@@ -86,6 +86,9 @@ export const servicos = [
     texto: 'Consultas, avaliações e acompanhamento cuidadoso para a saúde de cães e gatos.',
     miniatura: '/assets/img/servicos/atendimento-veterinario.webp',
     alt: 'Veterinária examinando um cão golden retriever com estetoscópio',
+    acao: 'Agendar consulta',
+    mensagemWhatsApp:
+      'Olá! Vi o serviço de atendimento veterinário no site do Amigo Animal e gostaria de agendar uma consulta para meu pet.',
   },
   {
     icone: 'cruz',
@@ -93,6 +96,9 @@ export const servicos = [
     texto: 'Acompanhamento responsável antes e depois do procedimento, com foco em segurança e recuperação.',
     miniatura: '/assets/img/servicos/castracao.webp',
     alt: 'Veterinária acompanhando um gato com colar de recuperação',
+    acao: 'Consultar castração',
+    mensagemWhatsApp:
+      'Olá! Vi o serviço de castração no site do Amigo Animal e gostaria de saber sobre avaliação, preparo e disponibilidade.',
   },
   {
     icone: 'dente',
@@ -100,6 +106,9 @@ export const servicos = [
     texto: 'Limpeza preventiva para ajudar a controlar o tártaro e preservar a saúde bucal do pet.',
     miniatura: '/assets/img/servicos/profilaxia-dentaria.webp',
     alt: 'Profissional veterinário examinando os dentes de um cão com espelho odontológico',
+    acao: 'Agendar avaliação',
+    mensagemWhatsApp:
+      'Olá! Vi o serviço de profilaxia dentária no site do Amigo Animal e gostaria de agendar uma avaliação para meu pet.',
   },
   {
     icone: 'tesoura',
@@ -107,6 +116,9 @@ export const servicos = [
     texto: 'Higiene e cuidados estéticos realizados com atenção ao conforto e ao bem-estar.',
     miniatura: '/assets/img/servicos/banho-tosa-real.webp',
     alt: 'Cão branco recebendo banho em um espaço profissional de estética animal',
+    acao: 'Agendar banho e tosa',
+    mensagemWhatsApp:
+      'Olá! Vi o serviço de banho e tosa no site do Amigo Animal e gostaria de consultar horários para meu pet.',
   },
   {
     icone: 'tigela',
@@ -114,6 +126,9 @@ export const servicos = [
     texto: 'Opções para diferentes portes, idades e necessidades, com apoio da equipe na escolha.',
     miniatura: '/assets/img/servicos/racoes.webp',
     alt: 'Cão e gato ao lado de tigelas e uma embalagem de ração sem marca',
+    acao: 'Consultar rações',
+    mensagemWhatsApp:
+      'Olá! Vi a seção de rações no site do Amigo Animal e gostaria de ajuda para escolher uma opção para meu pet.',
   },
   {
     icone: 'frasco',
@@ -121,6 +136,9 @@ export const servicos = [
     texto: 'Produtos veterinários para os cuidados do dia a dia, vendidos com orientação responsável.',
     miniatura: '/assets/img/servicos/medicamentos.webp',
     alt: 'Profissional apresentando medicamento veterinário a uma tutora com seu cão',
+    acao: 'Consultar medicamentos',
+    mensagemWhatsApp:
+      'Olá! Vi a seção de medicamentos no site do Amigo Animal e gostaria de falar com a equipe sobre a disponibilidade de um produto.',
   },
 ] as const;
 

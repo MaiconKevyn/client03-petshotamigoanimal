@@ -46,3 +46,34 @@ if (assinatura instanceof HTMLFormElement && aviso) {
     }, 6000);
   });
 }
+
+const controleDepoimentos = document.querySelector('[data-depoimentos-alternar]');
+const trilhoDepoimentos = document.getElementById('trilho-depoimentos');
+const rotuloDepoimentos = controleDepoimentos?.querySelector('[data-depoimentos-rotulo]');
+const movimentoReduzido = window.matchMedia('(prefers-reduced-motion: reduce)');
+let depoimentosPausados = false;
+
+const atualizarCarrossel = () => {
+  if (!(controleDepoimentos instanceof HTMLButtonElement) || !trilhoDepoimentos || !rotuloDepoimentos) {
+    return;
+  }
+
+  const pausado = depoimentosPausados || movimentoReduzido.matches;
+  trilhoDepoimentos.classList.toggle('depoimentos__trilho--pausado', pausado);
+  controleDepoimentos.setAttribute('aria-pressed', String(depoimentosPausados));
+  controleDepoimentos.setAttribute(
+    'aria-label',
+    depoimentosPausados ? 'Retomar animação dos depoimentos' : 'Pausar animação dos depoimentos',
+  );
+  rotuloDepoimentos.textContent = depoimentosPausados ? 'Retomar' : 'Pausar';
+};
+
+if (controleDepoimentos instanceof HTMLButtonElement && trilhoDepoimentos) {
+  controleDepoimentos.addEventListener('click', () => {
+    depoimentosPausados = !depoimentosPausados;
+    atualizarCarrossel();
+  });
+
+  movimentoReduzido.addEventListener('change', atualizarCarrossel);
+  atualizarCarrossel();
+}

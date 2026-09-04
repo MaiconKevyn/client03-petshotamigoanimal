@@ -7,20 +7,37 @@ const grupos = [false, true] as const;
 
 <section class="depoimentos" id="depoimentos">
   <div class="container">
-    <h2 class="visualmente-oculto">O que dizem nossos clientes na Petlove</h2>
+    <h2 class="visualmente-oculto" id="titulo-depoimentos">O que dizem nossos clientes na Petlove</h2>
 
-    <a
-      class="depoimentos__fonte"
-      href={avaliacaoPetlove.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Ver as avaliações publicadas na Petlove. Abre em uma nova aba."
-    >
-      Avaliações publicadas na Petlove <Icone nome="setaDiagonal" />
-    </a>
+    <div class="depoimentos__controles">
+      <a
+        class="depoimentos__fonte"
+        href={avaliacaoPetlove.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Ver as avaliações publicadas na Petlove. Abre em uma nova aba."
+      >
+        Avaliações na Petlove <Icone nome="setaDiagonal" />
+      </a>
 
-    <div class="depoimentos__janela" aria-label="Seleção de avaliações de clientes na Petlove">
-      <div class="depoimentos__trilho">
+      <button
+        class="depoimentos__alternar"
+        type="button"
+        aria-pressed="false"
+        aria-controls="trilho-depoimentos"
+        aria-label="Pausar animação dos depoimentos"
+        data-depoimentos-alternar
+      >
+        <span class="depoimentos__alternar-icone" aria-hidden="true">
+          <Icone nome="pausa" class="depoimentos__icone-pausa" />
+          <Icone nome="play" class="depoimentos__icone-play" />
+        </span>
+        <span data-depoimentos-rotulo>Pausar</span>
+      </button>
+    </div>
+
+    <div class="depoimentos__janela" role="region" aria-labelledby="titulo-depoimentos">
+      <div class="depoimentos__trilho" id="trilho-depoimentos">
         {
           grupos.map((duplicado) => (
             <div class="depoimentos__grupo" aria-hidden={duplicado ? 'true' : undefined}>
