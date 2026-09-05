@@ -1,4 +1,4 @@
-# Deploy na Hostinger — Pet Shop Amigo Animal
+# Deploy na Hostinger: Pet Shop Amigo Animal
 
 O site e estatico (Astro, `output: 'static'`). O build gera `dist/` com HTML,
 CSS, JS e assets ja prontos: nao ha backend, banco nem variavel de ambiente.
@@ -9,7 +9,7 @@ Ha dois caminhos. Prefira o **A (GitHub)**; o **B (ZIP)** e a contingencia.
 
 ## A. Deploy automatico pelo GitHub (recomendado)
 
-O repositorio dedicado ja e a raiz do projeto — `package.json`, `astro.config.mjs`,
+O repositorio dedicado ja e a raiz do projeto: `package.json`, `astro.config.mjs`,
 `src/` e `public/` estao no topo. Isso evita o erro de "estrutura de projeto
 invalida" que a Hostinger acusa em monorepos.
 
@@ -80,7 +80,7 @@ Hoje o valor e `amigoanimal.umbrastudio.com.br` (subdominio de demonstracao).
 - `ErrorDocument 404 /404.html`;
 - cabecalhos de seguranca (`nosniff`, `Referrer-Policy`, `X-Frame-Options`,
   `Permissions-Policy`);
-- compressao (`mod_deflate`) e cache (`mod_expires`) — HTML sempre revalidado,
+- compressao (`mod_deflate`) e cache (`mod_expires`), com HTML sempre revalidado,
   imagem/fonte com cache longo;
 - `X-Robots-Tag: noindex` enquanto o site estiver no dominio de demonstracao.
 

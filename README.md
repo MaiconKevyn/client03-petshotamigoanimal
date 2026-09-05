@@ -1,8 +1,8 @@
-# Pet Shop Amigo Animal — site institucional
+# Pet Shop Amigo Animal: site institucional
 
 Site estatico em **Astro 7**, sem framework de UI e sem dependencia de runtime.
 Referencia visual: `umbra-studios/behance/happy_tails`
-([Happy Tails — Pet Care & Veterinary](https://www.behance.net/gallery/253883069/Happy-Tails-Pet-Care-Veterinary-WordPress-Theme)).
+([Happy Tails: Pet Care & Veterinary](https://www.behance.net/gallery/253883069/Happy-Tails-Pet-Care-Veterinary-WordPress-Theme)).
 
 ## Como rodar
 
@@ -85,9 +85,9 @@ marca do cliente (`assets/branding/`).
 
 | Token | Valor | Origem / uso |
 | --- | --- | --- |
-| `--magenta` | `#fd2575` | script "pet shop" do logo — acao primaria |
-| `--turquesa` | `#01a4a4` | "AMIGO" e circulo pontilhado — icones e chips |
-| `--coral` | `#fd6a46` | "ANIMAL" — segundo acento, topo do gradiente do hero |
+| `--magenta` | `#fd2575` | script "pet shop" do logo: acao primaria |
+| `--turquesa` | `#01a4a4` | "AMIGO" e circulo pontilhado: icones e chips |
+| `--coral` | `#fd6a46` | "ANIMAL": segundo acento, topo do gradiente do hero |
 | `--rosa` | `#fd4670` | silhueta do cao no logo |
 | `--framboesa` | `#a3003f` | fim do gradiente, palavras-fantasma |
 | `--blush` | `#f6e9ed` | fundo das secoes claras |
@@ -96,13 +96,13 @@ marca do cliente (`assets/branding/`).
 | `--tinta` / `--grafite` | `#16141a` / `#4a4550` | titulo / corpo |
 
 Tipografia: **Hanken Grotesk** (400/500/600), servida localmente por
-`@fontsource` — sem chamada a CDN de fontes.
+`@fontsource`, sem chamada a CDN de fontes.
 
 ## Dados do cliente
 
 Reais e ja aplicados em `src/data/site.ts`:
 
-- Endereco: Rua dos Maias, 1970 — Porto Alegre/RS (com embed do Google Maps na
+- Endereco: Rua dos Maias, 1970, Porto Alegre/RS (com embed do Google Maps na
   secao "Onde estamos" e link para abrir no app)
 - WhatsApp: `https://wa.me/5551985648001` (botao no cabecalho e na secao de contato)
 - Instagram: `https://www.instagram.com/petshopamigoanimal3`
@@ -117,7 +117,7 @@ a totalidade das avaliações. O segundo grupo de cards é somente a cópia téc
 para o loop contínuo, oculta de leitores de tela; não são avaliações adicionais.
 
 Ainda **PLACEHOLDER**: horario de atendimento e nomes da
-equipe. Nao ha e-mail publicado — se o cliente tiver um, adicione
+equipe. Nao ha e-mail publicado. Se o cliente tiver um, adicione
 em `site.ts` e no rodape.
 
 O mapa usa `https://www.google.com/maps?q=...&output=embed`, que nao exige
@@ -229,7 +229,7 @@ em PNG transparente:
 | `assets/branding/logo-amigo-animal-lockup.webp` | lockup aparado | entrega, impressos, redes |
 
 No cabecalho e no rodape entra so o **simbolo**; o nome "Amigo Animal" e
-composto em HTML com a fonte do site — "Amigo" em `--turquesa` e "Animal" em
+composto em HTML com a fonte do site: "Amigo" em `--turquesa` e "Animal" em
 `--coral`, como no logo. Assim o wordmark fica nitido em qualquer tamanho e
 continua selecionavel, o que nao aconteceria com o lockup rasterizado reduzido a
 56px de altura. No rodape as duas palavras viram `--creme` para contrastar com o

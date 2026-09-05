@@ -1,14 +1,14 @@
 /* ==========================================================================
-   Pet Shop Amigo Animal — folha de estilo unica.
+   Pet Shop Amigo Animal: folha de estilo unica.
    Direcao visual derivada da referencia Happy Tails (behance/happy_tails).
    ========================================================================== */
 
 :root {
   /* Paleta da marca Amigo Animal (amostrada de assets/branding). */
   --framboesa: #a3003f; /* profundidade: fim do gradiente e palavras-fantasma */
-  --magenta: #fd2575;   /* script "pet shop" do logo — acao primaria */
-  --turquesa: #01a4a4;  /* "AMIGO" e circulo pontilhado do logo — acento */
-  --coral: #fd6a46;     /* "ANIMAL" do logo — segundo acento, topo do hero */
+  --magenta: #fd2575;   /* script "pet shop" do logo: acao primaria */
+  --turquesa: #01a4a4;  /* "AMIGO" e circulo pontilhado do logo: acento */
+  --coral: #fd6a46;     /* "ANIMAL" do logo: segundo acento, topo do hero */
   --magenta-acessivel: #b50046; /* acoes e textos sobre fundos claros */
   --turquesa-acessivel: #006f73;
   --coral-acessivel: #a83b26;

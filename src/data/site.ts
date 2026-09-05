@@ -9,7 +9,7 @@ export const site = {
   telefoneLink: 'tel:+5551985648001',
   whatsapp: 'https://wa.me/5551985648001',
   instagram: 'https://www.instagram.com/petshopamigoanimal3',
-  horario: 'Seg a Sáb: 8h00 – 19h00', // PLACEHOLDER — confirmar com o cliente
+  horario: 'Seg a Sáb: 8h00 – 19h00', // PLACEHOLDER: confirmar com o cliente
   endereco: {
     rua: 'Rua dos Maias, 1970',
     cidade: 'Porto Alegre',
