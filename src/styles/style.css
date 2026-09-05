@@ -988,43 +988,35 @@ ul {
 }
 
 .comparacao__fotos {
-  position: relative;
   flex: 1;
-  min-height: 270px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: end;
   min-width: 0;
 }
 
 .comparacao__foto {
-  position: relative;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   min-width: 0;
 }
 
 .comparacao__foto img {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  align-self: flex-start;
   width: min(100%, 220px);
   height: auto;
-  max-height: 220px;
-  object-fit: contain;
-  object-position: bottom left;
-  /* O corte lateral da foto coincide com a borda externa, nunca com o meio do card. */
+  /* A foto segue até a base do card; não há faixa ou máscara sobre o corpo. */
 }
 
 .comparacao__foto:last-child img {
-  left: auto;
-  right: 0;
-  object-position: bottom right;
+  align-self: flex-end;
 }
 
 .comparacao__foto figcaption {
-  position: absolute;
-  top: 18px;
-  left: min(50%, 110px);
-  transform: translateX(-50%);
+  order: -1;
+  align-self: center;
+  margin-bottom: 10px;
   padding: 5px 12px;
   border-radius: 999px;
   border: 1px solid var(--borda-magenta);
@@ -1035,35 +1027,18 @@ ul {
   text-align: center;
 }
 
-.comparacao__foto:last-child figcaption {
-  left: auto;
-  right: min(50%, 110px);
-  transform: translateX(50%);
-}
-
-.comparacao__rodape {
-  position: relative;
-  z-index: 1;
+.comparacao__cabecalho {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  gap: 4px;
   min-width: 0;
-  padding: 16px 20px;
+  padding: 22px 22px 14px;
   flex-direction: column;
   align-items: flex-start;
-  background: var(--branco);
-  pointer-events: none;
 }
 
-.comparacao__rodape .cartao-destaque__titulo {
+.comparacao__cabecalho .cartao-destaque__titulo {
   max-width: none;
   color: var(--tinta);
-}
-
-.comparacao__rodape .cartao-destaque__acao {
-  flex: none;
-  pointer-events: auto;
 }
 
 /* --------------------------------------------------------------------------
