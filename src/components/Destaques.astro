@@ -1,17 +1,14 @@
 ---
 import Icone from './Icone.astro';
 import AntesDepois from './AntesDepois.astro';
-import { destaques } from '../data/site';
+import { destaques, servicos, site } from '../data/site';
 ---
 
 <section class="destaques">
   <div class="container">
     <div class="secao-cabecalho">
-      <span class="chip">
-        <Icone nome="coracaoPata" />
-        A saúde do seu pet, nossa prioridade
-      </span>
-      <h2 class="titulo-secao">Cuidado veterinário completo para pets felizes e saudáveis</h2>
+      <h2 class="titulo-secao">Cuidado para cada momento</h2>
+      <p class="olho">Da consulta à rotina de cuidados, conte com a gente.</p>
     </div>
 
     <div class="destaques__grade">
@@ -37,8 +34,14 @@ import { destaques } from '../data/site';
               <div class="cartao-destaque__corpo">
                 <h3 class="cartao-destaque__titulo">{item.titulo}</h3>
                 <p class="cartao-destaque__texto">{item.texto}</p>
-                <a class="seta-circular" href="#servicos" aria-label={`Saiba mais sobre ${item.titulo}`}>
-                  <Icone nome="seta" />
+                <a
+                  class="cartao-destaque__acao"
+                  href={`${site.whatsapp}?text=${encodeURIComponent(item.servicoId === 'racoes' ? 'Olá! Vim pelo site do Amigo Animal e gostaria de consultar a disponibilidade de rações ou medicamentos para meu pet.' : servicos.find((servico) => servico.id === item.servicoId)!.mensagemWhatsApp)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.servicoId === 'racoes' ? 'Consultar produtos' : servicos.find((servico) => servico.id === item.servicoId)!.acao}
+                  <Icone nome="setaDiagonal" />
                 </a>
               </div>
             </article>

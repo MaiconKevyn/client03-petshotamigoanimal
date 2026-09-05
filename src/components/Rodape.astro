@@ -1,6 +1,6 @@
 ---
 import Icone from './Icone.astro';
-import { site } from '../data/site';
+import { agendamentoLink, servicos, site } from '../data/site';
 
 const ano = new Date().getFullYear();
 const endereco = `${site.endereco.rua}, ${site.endereco.cidade}/${site.endereco.uf}`;
@@ -13,7 +13,7 @@ const endereco = `${site.endereco.rua}, ${site.endereco.cidade}/${site.endereco.
         <img class="marca__simbolo" src="/assets/img/marca-amigo-animal.webp" alt="" width="56" height="56" />
         <span class="marca__texto"><span>Amigo</span><span>Animal</span></span>
       </span>
-      <a class="rodape__slogan" href={site.whatsapp}>
+      <a class="rodape__slogan" href={agendamentoLink} target="_blank" rel="noopener noreferrer">
         {site.slogan}
         <Icone nome="setaDiagonal" />
       </a>
@@ -21,25 +21,10 @@ const endereco = `${site.endereco.rua}, ${site.endereco.cidade}/${site.endereco.
 
     <div class="rodape__grade">
       <div>
-        <h2 class="rodape__titulo">Newsletter</h2>
-        <form class="assinatura" data-assinatura>
-          <label class="visualmente-oculto" for="email-news">Seu e-mail</label>
-          <input
-            id="email-news"
-            type="email"
-            name="email"
-            placeholder="Receba novidades e dicas"
-            required
-          />
-          <button type="submit" aria-label="Assinar newsletter">
-            <Icone nome="envelope" />
-          </button>
-        </form>
-        <p class="rodape__nota" data-assinatura-aviso>
-          Enviamos dicas de saúde animal e novidades do pet shop. Sem spam.
-        </p>
+        <h2 class="rodape__titulo">Vamos conversar?</h2>
+        <p class="rodape__nota">Fale com a equipe para agendar um serviço ou consultar os produtos do pet shop.</p>
         <div class="redes">
-          <a href={site.whatsapp} rel="noopener noreferrer" target="_blank">WhatsApp</a>
+          <a href={agendamentoLink} rel="noopener noreferrer" target="_blank">WhatsApp</a>
           <a href={site.instagram} rel="noopener noreferrer" target="_blank">Instagram</a>
         </div>
       </div>
@@ -51,7 +36,7 @@ const endereco = `${site.endereco.rua}, ${site.endereco.cidade}/${site.endereco.
             <b>Estamos aqui:</b>{' '}
             <a href={site.mapaLink} target="_blank" rel="noopener noreferrer">{endereco}</a>
           </p>
-          <p><b>Atendimento:</b> {site.horario}</p>
+          <p><b>Atendimento:</b> <a href={agendamentoLink} target="_blank" rel="noopener noreferrer">{site.horario}</a></p>
         </div>
         <a class="rodape__telefone" href={site.telefoneLink}>
           <Icone nome="telefone" />
@@ -62,26 +47,20 @@ const endereco = `${site.endereco.rua}, ${site.endereco.cidade}/${site.endereco.
       <div>
         <h2 class="rodape__titulo">Links úteis</h2>
         <nav class="rodape__links" aria-label="Links do rodapé">
-          <a href="#servicos">Atendimento veterinário</a>
-          <a href="#servicos">Castração</a>
-          <a href="#servicos">Profilaxia dentária</a>
-          <a href="#servicos">Banho e tosa</a>
-          <a href="#servicos">Rações</a>
-          <a href="#servicos">Medicamentos</a>
+          {servicos.map((servico) => (
+            <a href={`/#${servico.id}`}>{servico.titulo}</a>
+          ))}
         </nav>
       </div>
     </div>
 
     <div class="rodape__base">
       <p>© {ano} {site.nomeCompleto}. Todos os direitos reservados.</p>
-      <nav aria-label="Políticas">
-        <a href="#contato">Termos de uso</a>
-        <a href="#contato">Política de privacidade</a>
-      </nav>
+      <a href={site.mapaLink} target="_blank" rel="noopener noreferrer">Porto Alegre, RS</a>
     </div>
   </div>
 
-  <a class="subir" href="#topo" data-subir aria-label="Voltar ao topo">
+  <a class="subir" href="/#topo" data-subir aria-label="Voltar ao topo">
     <Icone nome="setaCima" />
   </a>
 </footer>

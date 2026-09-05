@@ -1,0 +1,45 @@
+---
+import '../styles/medalha-pet.css';
+---
+
+<div class="medalha-pet" aria-hidden="true" data-medalha>
+  <div class="medalha-pet__objeto">
+    <svg viewBox="0 0 180 240" focusable="false">
+      <defs>
+        <linearGradient id="metal-pet" x1="0" y1="0" x2="1" y2="1">
+          <stop stop-color="#f4ffff" /><stop offset=".2" stop-color="#91d8d5" />
+          <stop offset=".45" stop-color="#e2f7f4" /><stop offset=".7" stop-color="#007e82" />
+          <stop offset="1" stop-color="#034d51" />
+        </linearGradient>
+        <linearGradient id="esmalte-pet" x1="0" y1="0" x2=".9" y2="1">
+          <stop stop-color="#ffad88" /><stop offset=".35" stop-color="#fd6a46" />
+          <stop offset="1" stop-color="#c72d52" />
+        </linearGradient>
+        <radialGradient id="reflexo-pet" cx=".18" cy=".08" r=".95">
+          <stop stop-color="#fff4e7" stop-opacity=".5" /><stop offset=".7" stop-color="#fff4e7" stop-opacity="0" />
+        </radialGradient>
+        <path id="forma-pet" d="M69 55C72 47 108 47 111 55L120 68C145 75 157 98 157 130V159C157 194 128 219 93 219S29 194 29 159V130C29 98 41 75 66 68Z" />
+        <g id="pata-pet">
+          <ellipse cx="70" cy="109" rx="8" ry="11" transform="rotate(-22 70 109)" />
+          <ellipse cx="90" cy="102" rx="8" ry="11" />
+          <ellipse cx="110" cy="109" rx="8" ry="11" transform="rotate(22 110 109)" />
+          <path d="M73 130C79 118 84 116 90 116S101 118 107 130C116 144 108 151 99 147C93 144 87 144 81 147C72 151 64 144 73 130Z" />
+        </g>
+      </defs>
+      <ellipse cx="91" cy="39" rx="20" ry="29" fill="none" stroke="#034d51" stroke-width="8" />
+      <ellipse cx="89" cy="36" rx="20" ry="29" fill="none" stroke="url(#metal-pet)" stroke-width="6" />
+      <use href="#forma-pet" fill="#034d51" transform="translate(4 5)" />
+      <use href="#forma-pet" fill="url(#metal-pet)" stroke="#b6e9e2" stroke-width="1" />
+      <use href="#forma-pet" fill="url(#esmalte-pet)" transform="translate(7.4 10.4) scale(.92)" />
+      <use href="#forma-pet" fill="url(#reflexo-pet)" transform="translate(7.4 10.4) scale(.92)" />
+      <circle cx="91" cy="65" r="6" fill="#176a6a" stroke="#ffc2a3" stroke-width="2" />
+      <path d="M91 8C114 8 116 53 93 64" fill="none" stroke="url(#metal-pet)" stroke-width="6" stroke-linecap="round" />
+      <use href="#pata-pet" fill="#9f2540" transform="translate(1.5 2.5)" />
+      <use href="#pata-pet" fill="#fff2dd" />
+      <text x="92" y="176" text-anchor="middle" fill="#fff4e7" font-size="21" font-weight="600" font-family="Hanken Grotesk, sans-serif">Amigo</text>
+      <text x="92" y="196" text-anchor="middle" fill="#fff4e7" font-size="18" font-weight="400" font-family="Hanken Grotesk, sans-serif">Animal</text>
+    </svg>
+  </div>
+</div>
+
+<script src="../scripts/medalha-pet.js"></script>

@@ -1,0 +1,32 @@
+---
+import Icone from './Icone.astro';
+import { agendamentoLink } from '../data/site';
+
+const etapas = [
+  { titulo: 'Escolha o serviço', texto: 'Consulta, banho e tosa ou produtos: encontre o cuidado que seu pet precisa.' },
+  { titulo: 'Conte sobre seu pet', texto: 'No WhatsApp, informe o serviço desejado e um pouco sobre seu cão ou gato.' },
+  { titulo: 'Combine o horário', texto: 'Converse com a equipe sobre a disponibilidade e confirme seu agendamento.' },
+];
+---
+
+<section class="agendamento" id="agendamento" aria-labelledby="titulo-agendamento">
+  <div class="container">
+    <div class="agendamento__cabecalho">
+      <div>
+        <h2 class="titulo-secao" id="titulo-agendamento">Agendar é simples</h2>
+        <p class="olho">O primeiro passo é uma conversa.</p>
+      </div>
+      <a class="botao botao--magenta" href={agendamentoLink} target="_blank" rel="noopener noreferrer">
+        <Icone nome="whatsapp" /> Falar com a equipe
+      </a>
+    </div>
+    <ol class="agendamento__etapas">
+      {etapas.map((etapa, indice) => (
+        <li>
+          <span class="agendamento__numero" aria-hidden="true">{String(indice + 1).padStart(2, '0')}</span>
+          <div><h3>{etapa.titulo}</h3><p>{etapa.texto}</p></div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

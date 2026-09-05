@@ -1,6 +1,6 @@
 ---
 import Icone from './Icone.astro';
-import { site } from '../data/site';
+import { agendamentoLink, site } from '../data/site';
 
 const endereco = `${site.endereco.rua}, ${site.endereco.cidade}/${site.endereco.uf}`;
 ---
@@ -8,11 +8,8 @@ const endereco = `${site.endereco.rua}, ${site.endereco.cidade}/${site.endereco.
 <section class="contato" id="contato">
   <div class="container">
     <div class="secao-cabecalho">
-      <span class="chip">
-        <Icone nome="coracaoPata" />
-        Estamos pertinho de você
-      </span>
-      <h2 class="titulo-secao">Venha nos visitar ou fale com a gente agora</h2>
+      <h2 class="titulo-secao">Perto de você e do seu pet</h2>
+      <p class="olho">Estamos na Rua dos Maias, em Porto Alegre.</p>
     </div>
 
     <div class="contato__grade">
@@ -29,7 +26,7 @@ const endereco = `${site.endereco.rua}, ${site.endereco.cidade}/${site.endereco.
             <span class="contato__icone"><Icone nome="relogio" /></span>
             <div>
               <b>Atendimento</b>
-              <span>{site.horario}</span>
+              <a href={agendamentoLink} target="_blank" rel="noopener noreferrer">{site.horario}</a>
             </div>
           </li>
           <li>
@@ -44,21 +41,21 @@ const endereco = `${site.endereco.rua}, ${site.endereco.cidade}/${site.endereco.
         <div class="contato__acoes">
           <a
             class="botao botao--magenta"
-            href={site.whatsapp}
+            href={agendamentoLink}
             target="_blank"
             rel="noopener noreferrer"
           >
             <Icone nome="whatsapp" />
-            Chamar no WhatsApp
+            Agendar pelo WhatsApp
           </a>
           <a
             class="botao botao--turquesa"
-            href={site.instagram}
+            href={site.mapaLink}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icone nome="instagram" />
-            Seguir no Instagram
+            <Icone nome="local" />
+            Como chegar
           </a>
         </div>
       </div>

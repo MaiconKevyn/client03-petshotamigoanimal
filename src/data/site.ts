@@ -1,15 +1,14 @@
 // Dados de contato e conteudo do site.
-// ATENCAO: os valores marcados com PLACEHOLDER precisam ser trocados pelos
-// dados reais do cliente antes do go-live (ver README.md).
+// Horários e equipe ainda dependem de confirmação; dados de equipe não são publicados.
 export const site = {
   nome: 'Amigo Animal',
   nomeCompleto: 'Pet Shop Amigo Animal',
-  slogan: 'Onde o bem-estar do seu pet vem primeiro',
+  slogan: 'Seu pet, em boas mãos.',
   telefone: '(51) 98564-8001',
   telefoneLink: 'tel:+5551985648001',
   whatsapp: 'https://wa.me/5551985648001',
   instagram: 'https://www.instagram.com/petshopamigoanimal3',
-  horario: 'Seg a Sáb: 8h00 – 19h00', // PLACEHOLDER: confirmar com o cliente
+  horario: 'Consulte os horários pelo WhatsApp', // Publicar horários somente após confirmação do cliente
   endereco: {
     rua: 'Rua dos Maias, 1970',
     cidade: 'Porto Alegre',
@@ -34,13 +33,14 @@ export const avaliacaoPetlove = {
 export const navegacao = [
   { rotulo: 'Início', href: '#topo', atual: true },
   { rotulo: 'Serviços', href: '#servicos' },
-  { rotulo: 'Equipe', href: '#equipe' },
   { rotulo: 'Depoimentos', href: '#depoimentos' },
+  { rotulo: 'Como agendar', href: '#agendamento' },
   { rotulo: 'Onde estamos', href: '#contato' },
 ] as const;
 
 export const destaques = [
   {
+    servicoId: 'atendimento-veterinario',
     chip: 'Cuidado próximo',
     titulo: 'Atendimento veterinário',
     texto:
@@ -56,6 +56,7 @@ export const destaques = [
     largo: true,
   },
   {
+    servicoId: 'banho-e-tosa',
     chip: 'Higiene e estética',
     titulo: 'Banho e tosa',
     texto: 'Higiene e cuidados estéticos realizados com atenção ao conforto e ao bem-estar do pet.',
@@ -65,6 +66,7 @@ export const destaques = [
     comparacao: true,
   },
   {
+    servicoId: 'racoes',
     chip: 'Pet shop completo',
     titulo: 'Rações e medicamentos',
     texto: 'Produtos essenciais para a rotina do pet, com orientação da equipe na hora da escolha.',
@@ -81,6 +83,8 @@ export const destaques = [
 
 export const servicos = [
   {
+    id: 'atendimento-veterinario',
+    categoria: 'veterinario',
     icone: 'estetoscopio',
     titulo: 'Atendimento veterinário',
     texto: 'Consultas, avaliações e acompanhamento cuidadoso para a saúde de cães e gatos.',
@@ -91,6 +95,8 @@ export const servicos = [
       'Olá! Vi o serviço de atendimento veterinário no site do Amigo Animal e gostaria de agendar uma consulta para meu pet.',
   },
   {
+    id: 'castracao',
+    categoria: 'veterinario',
     icone: 'cruz',
     titulo: 'Castração',
     texto: 'Acompanhamento responsável antes e depois do procedimento, com foco em segurança e recuperação.',
@@ -101,6 +107,8 @@ export const servicos = [
       'Olá! Vi o serviço de castração no site do Amigo Animal e gostaria de saber sobre avaliação, preparo e disponibilidade.',
   },
   {
+    id: 'profilaxia-dentaria',
+    categoria: 'veterinario',
     icone: 'dente',
     titulo: 'Profilaxia dentária',
     texto: 'Limpeza preventiva para ajudar a controlar o tártaro e preservar a saúde bucal do pet.',
@@ -111,6 +119,8 @@ export const servicos = [
       'Olá! Vi o serviço de profilaxia dentária no site do Amigo Animal e gostaria de agendar uma avaliação para meu pet.',
   },
   {
+    id: 'banho-e-tosa',
+    categoria: 'petshop',
     icone: 'tesoura',
     titulo: 'Banho e tosa',
     texto: 'Higiene e cuidados estéticos realizados com atenção ao conforto e ao bem-estar.',
@@ -121,6 +131,8 @@ export const servicos = [
       'Olá! Vi o serviço de banho e tosa no site do Amigo Animal e gostaria de consultar horários para meu pet.',
   },
   {
+    id: 'racoes',
+    categoria: 'petshop',
     icone: 'tigela',
     titulo: 'Rações',
     texto: 'Opções para diferentes portes, idades e necessidades, com apoio da equipe na escolha.',
@@ -131,6 +143,8 @@ export const servicos = [
       'Olá! Vi a seção de rações no site do Amigo Animal e gostaria de ajuda para escolher uma opção para meu pet.',
   },
   {
+    id: 'medicamentos',
+    categoria: 'petshop',
     icone: 'frasco',
     titulo: 'Medicamentos',
     texto: 'Produtos veterinários para os cuidados do dia a dia, vendidos com orientação responsável.',
@@ -142,6 +156,7 @@ export const servicos = [
   },
 ] as const;
 
+// Rascunho não publicado: confirmar nomes, credenciais e fotografias antes de reativar Equipe.
 export const equipe = [
   {
     nome: 'Dra. Olívia Cardoso',
@@ -184,3 +199,7 @@ export const depoimentos = [
     nome: 'Fabio',
   },
 ] as const;
+
+export const agendamentoLink = `${site.whatsapp}?text=${encodeURIComponent(
+  'Olá! Vim pelo site do Amigo Animal e gostaria de consultar horários para o atendimento do meu pet.',
+)}`;

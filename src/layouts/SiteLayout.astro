@@ -23,7 +23,6 @@ const dadosEstruturados = {
   url: canonicalUrl.href,
   image: ogImageUrl.href,
   telephone: '+5551985648001',
-  priceRange: '$$',
   currenciesAccepted: 'BRL',
   address: {
     '@type': 'PostalAddress',
@@ -33,14 +32,6 @@ const dadosEstruturados = {
     addressCountry: 'BR',
   },
   hasMap: site.mapaLink,
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      opens: '08:00',
-      closes: '19:00',
-    },
-  ],
   areaServed: { '@type': 'City', name: site.endereco.cidade },
   sameAs: [site.instagram],
   hasOfferCatalog: {

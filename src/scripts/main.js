@@ -4,19 +4,30 @@
 const menu = document.querySelector('[data-menu]');
 const navegacao = document.getElementById('menu-principal');
 
-if (menu && navegacao) {
-  menu.addEventListener('click', () => {
-    const aberto = menu.getAttribute('aria-expanded') === 'true';
-    menu.setAttribute('aria-expanded', String(!aberto));
-    navegacao.classList.toggle('navegacao--aberta', !aberto);
-  });
+if (menu instanceof HTMLButtonElement && navegacao) {
+  const alternarMenu = (aberto) => {
+    menu.setAttribute('aria-expanded', String(aberto));
+    menu.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+    navegacao.classList.toggle('navegacao--aberta', aberto);
+  };
 
+  menu.addEventListener('click', () => alternarMenu(menu.getAttribute('aria-expanded') !== 'true'));
   navegacao.addEventListener('click', (evento) => {
-    if (evento.target instanceof HTMLAnchorElement) {
-      menu.setAttribute('aria-expanded', 'false');
-      navegacao.classList.remove('navegacao--aberta');
+    if (evento.target instanceof Element && evento.target.closest('a')) alternarMenu(false);
+  });
+  document.addEventListener('keydown', (evento) => {
+    if (evento.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') {
+      alternarMenu(false);
+      menu.focus();
     }
   });
+  document.addEventListener('click', (evento) => {
+    if (evento.target instanceof Node && !menu.contains(evento.target) && !navegacao.contains(evento.target)) {
+      alternarMenu(false);
+    }
+  });
+  const desktop = window.matchMedia('(min-width: 1181px)');
+  desktop.addEventListener('change', () => alternarMenu(false));
 }
 
 const cabecalho = document.querySelector('[data-cabecalho]');
@@ -30,22 +41,6 @@ const aoRolar = () => {
 
 aoRolar();
 window.addEventListener('scroll', aoRolar, { passive: true });
-
-const assinatura = document.querySelector('[data-assinatura]');
-const aviso = document.querySelector('[data-assinatura-aviso]');
-
-if (assinatura instanceof HTMLFormElement && aviso) {
-  const textoOriginal = aviso.textContent;
-
-  assinatura.addEventListener('submit', (evento) => {
-    evento.preventDefault();
-    aviso.textContent = 'Cadastro recebido. Em breve entraremos em contato.';
-    assinatura.reset();
-    window.setTimeout(() => {
-      aviso.textContent = textoOriginal;
-    }, 6000);
-  });
-}
 
 const controleDepoimentos = document.querySelector('[data-depoimentos-alternar]');
 const trilhoDepoimentos = document.getElementById('trilho-depoimentos');
@@ -76,4 +71,24 @@ if (controleDepoimentos instanceof HTMLButtonElement && trilhoDepoimentos) {
 
   movimentoReduzido.addEventListener('change', atualizarCarrossel);
   atualizarCarrossel();
+}
+
+// Indica a seção atual sem alterar o histórico durante a rolagem.
+const linksSecoes = [...document.querySelectorAll('.navegacao__link[href^="#"]')];
+const secoes = linksSecoes.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+if (secoes.length) {
+  const atualizarSecao = () => {
+    const atual = [...secoes].reverse().find((secao) => secao.getBoundingClientRect().top <= 160) || secoes[0];
+    linksSecoes.forEach((link) => {
+      if (link.getAttribute('href') === `#${atual.id}`) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  };
+  let pendente = false;
+  window.addEventListener('scroll', () => {
+    if (pendente) return;
+    pendente = true;
+    requestAnimationFrame(() => { atualizarSecao(); pendente = false; });
+  }, { passive: true });
+  atualizarSecao();
 }

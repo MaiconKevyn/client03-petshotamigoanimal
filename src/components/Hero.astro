@@ -1,44 +1,48 @@
 ---
 import AvaliacaoPetlove from './AvaliacaoPetlove.astro';
 import Icone from './Icone.astro';
-import { site } from '../data/site';
-
-const mensagemHero = encodeURIComponent(
-  'Olá! Vim pelo site do Amigo Animal e gostaria de falar com a equipe sobre o atendimento do meu pet.',
-);
+import MedalhaPet from './MedalhaPet.astro';
+import { agendamentoLink } from '../data/site';
 ---
 
 <section class="hero" id="topo">
-  <img
-    class="hero__animal"
-    src="/assets/img/hero-cao-natural.webp"
-    alt="Cão de porte médio olhando para cima"
-    width="1536"
-    height="1024"
-    fetchpriority="high"
-    decoding="async"
-  />
-  <p class="hero__fantasma" aria-hidden="true">amigo<br />animal</p>
+  <div class="hero__visual">
+    <img
+      class="hero__animal"
+      src="/assets/img/hero-cao-natural.webp"
+      alt="Cão de porte médio olhando para cima"
+      width="1536"
+      height="1024"
+      fetchpriority="high"
+      decoding="async"
+    />
+    <MedalhaPet />
+  </div>
 
   <div class="container hero__grade">
-    <div>
-      <h1 class="hero__titulo">Onde o bem-estar<br />do seu pet<br />vem primeiro</h1>
+    <div class="hero__conteudo">
+      <p class="hero__local"><Icone nome="local" /> Porto Alegre · Rua dos Maias, 1970</p>
+      <h1 class="hero__titulo">Seu pet,<br />em boas mãos.</h1>
       <p class="hero__texto">
-        Na nossa clínica e pet shop, cada animal recebe cuidado atencioso e de alta qualidade
-        em todas as fases da vida, do primeiro filhote ao companheiro de sempre.
+        Veterinário, banho e tosa e pet shop.<br />
+        Cuidado de perto, em cada fase da vida.
       </p>
-      <a
-        class="hero__cta-mobile botao botao--magenta"
-        href={`${site.whatsapp}?text=${mensagemHero}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Falar com a equipe do Amigo Animal pelo WhatsApp. Abre em uma nova aba."
-      >
-        <Icone nome="whatsapp" />
-        Falar no WhatsApp
-      </a>
+      <div class="hero__acoes">
+        <a
+          class="botao botao--creme"
+          href={agendamentoLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Agendar pelo WhatsApp com a equipe do Amigo Animal. Abre em uma nova aba."
+        >
+          <Icone nome="whatsapp" />
+          Agendar pelo WhatsApp
+        </a>
+        <a class="hero__servicos" href="#servicos">Ver serviços <Icone nome="seta" /></a>
+      </div>
     </div>
-
+  </div>
+  <div class="hero__confianca">
     <AvaliacaoPetlove />
   </div>
 </section>

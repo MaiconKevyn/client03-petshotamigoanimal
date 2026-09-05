@@ -4,6 +4,37 @@ Site estatico em **Astro 7**, sem framework de UI e sem dependencia de runtime.
 Referencia visual: `umbra-studios/behance/happy_tails`
 ([Happy Tails: Pet Care & Veterinary](https://www.behance.net/gallery/253883069/Happy-Tails-Pet-Care-Veterinary-WordPress-Theme)).
 
+## Revisão de UX e componente dimensional
+
+A home usa a mensagem “Seu pet, em boas mãos”, a localização e ações explícitas
+para agendar pelo WhatsApp ou ver os serviços. O CTA do hero funciona em todas
+as larguras, inclusive entre 761 e 1023 px. No celular, a foto ganha uma área
+própria para preservar o rosto do cachorro; a avaliação compacta aparece acima
+da imagem, sem cobrir o animal.
+
+`MedalhaPet.astro`, `medalha-pet.css` e `medalha-pet.js` criam uma medalha coral
+com borda turquesa, volume, esmalte e argola em SVG. É um efeito dimensional
+com perspectiva CSS, sem WebGL ou dependências adicionais. O movimento reage
+ao ponteiro no hero, limitado a um quadro por atualização; não há animação
+contínua. Touch, movimento reduzido e ausência de JavaScript mantêm a versão
+estática. A medalha é decorativa, não recebe foco nem intercepta cliques.
+
+Os destaques têm ações identificadas em texto. A lista de serviços oferece
+filtros “Todos”, “Veterinário” e “Pet shop”; sem JavaScript, todos os serviços
+continuam visíveis e os filtros não aparecem. Cada serviço tem uma âncora própria.
+Links diretos revelam o serviço mesmo que outro filtro esteja selecionado.
+Os depoimentos vêm logo após os serviços; no celular, a navegação é por rolagem
+horizontal manual. A seção “Como agendar” explica a conversa pelo WhatsApp,
+sem simular uma reserva confirmada. O menu fecha ao selecionar um link, clicar
+fora ou usar Escape; Escape devolve o foco ao botão.
+
+Os perfis e parceiros de demonstração não são renderizados. Antes de reativar
+`Equipe.astro` ou `Parceiros.astro`, confirme identidades, credenciais, fotos e
+vínculos reais. O horário provisório também foi retirado do HTML e do JSON-LD:
+o site orienta a consultar a disponibilidade pelo WhatsApp. Nenhum horário real
+foi presumido. O formulário de newsletter sem integração e os links de políticas
+que levavam ao contato foram removidos; nenhuma política jurídica foi inventada.
+
 ## Como rodar
 
 ```bash
@@ -34,11 +65,11 @@ src/
   data/site.ts       contatos, navegacao, servicos, equipe, depoimentos
   data/banho-tosa.ts retratos escolhidos e enquadramentos do antes/depois
   layouts/           SiteLayout (head, SEO, JSON-LD)
-  components/        Cabecalho, Hero, Destaques (inclui AntesDepois), Servicos,
-                     Parceiros, Equipe, Depoimentos, Contato, Rodape, Icone
+  components/        Cabecalho, Hero, MedalhaPet, Destaques (inclui AntesDepois),
+                     Servicos, Depoimentos, Agendamento, Contato, Rodape, Icone
   pages/             index.astro, 404.astro
   scripts/main.js    menu movel, header colado, carrossel, voltar ao topo
-  styles/style.css   design system inteiro (tokens + componentes)
+  styles/           style.css (tokens + componentes), medalha-pet.css
 ```
 
 Os dados editaveis estao em `src/data/site.ts` e `src/data/banho-tosa.ts`. A aparencia esta em
@@ -116,8 +147,8 @@ dos cards e cada citação usa a URL do perfil. A seleção é manual e não rep
 a totalidade das avaliações. O segundo grupo de cards é somente a cópia técnica
 para o loop contínuo, oculta de leitores de tela; não são avaliações adicionais.
 
-Ainda **PLACEHOLDER**: horario de atendimento e nomes da
-equipe. Nao ha e-mail publicado. Se o cliente tiver um, adicione
+Ainda pendentes de confirmação e **não publicados**: horário de atendimento, nomes e fotos da
+equipe, além dos parceiros de demonstração. Nao ha e-mail publicado. Se o cliente tiver um, adicione
 em `site.ts` e no rodape.
 
 O mapa usa `https://www.google.com/maps?q=...&output=embed`, que nao exige
@@ -191,14 +222,14 @@ original, sem zoom para cobrir o card, limitados a 220 pixels de largura cada.
 As fotos e o card usam fundo branco uniforme, no mesmo padrao dos outros cards.
 O espaco entre os animais e preservado, sem mascara vertical sobre as laterais
 dos cachorros. Rotulos em HTML identificam cada metade, com borda rosa e texto
-turquesa escuro. O titulo usa texto escuro e o botao tem fundo blush. Os retratos
+turquesa escuro. O título e a ação textual ficam em um rodapé branco separado, abaixo das fotos, sem sobreposição. Os retratos
 ficam alinhados a borda inferior e as bordas externas do card: Antes a esquerda
 e Depois a direita. As legendas acompanham cada retrato. Nao ha mascaras,
 degrade no rodape ou recorte nos containers internos. Os arquivos dos retratos
 nao foram regenerados nesta revisao.
 
 A dupla aprovada substitui a exibicao dos dois casos antigos. Nao ha carrossel,
-animacao, controles de troca ou JavaScript neste card. A seta no rodape abre o
+animacao, controles de troca ou JavaScript neste card. A ação “Agendar banho e tosa” no rodapé abre o
 WhatsApp com uma mensagem especifica de banho e tosa, sem enviar automaticamente.
 As imagens fornecidas pelo cliente foram geradas/aprimoradas por IA; nao sao
 fotografias originais nem comprovam recuperacao fiel de cada fio da pelagem.

@@ -1,6 +1,6 @@
 ---
 import Icone from './Icone.astro';
-import { navegacao, site } from '../data/site';
+import { agendamentoLink, navegacao, site } from '../data/site';
 
 interface Props {
   /** O cabecalho flutua sobre o hero na home; em paginas internas ele fica solto. */
@@ -18,8 +18,8 @@ const { sobreHero = true } = Astro.props;
       {site.telefone}
     </a>
     <span class="topo__item">
-      <Icone nome="relogio" />
-      {site.horario}
+      <Icone nome="local" />
+      {site.endereco.rua} · {site.endereco.cidade}
     </span>
   </div>
 </div>
@@ -46,8 +46,8 @@ const { sobreHero = true } = Astro.props;
               <li>
                 <a
                   class="navegacao__link"
-                  href={item.href}
-                  aria-current={'atual' in item && item.atual ? 'page' : undefined}
+                  href={`${Astro.url.pathname === '/' ? '' : '/'}${item.href}`}
+                  aria-current={Astro.url.pathname === '/' && 'atual' in item && item.atual ? 'location' : undefined}
                 >
                   {item.rotulo}
                 </a>
@@ -69,22 +69,22 @@ const { sobreHero = true } = Astro.props;
         </a>
         <a
           class="botao botao--magenta"
-          href={site.whatsapp}
+          href={agendamentoLink}
           target="_blank"
           rel="noopener noreferrer"
         >
           <Icone nome="whatsapp" />
-          Chamar no WhatsApp
+          Agendar pelo WhatsApp
         </a>
         <button
           class="menu-alternar"
           type="button"
           aria-expanded="false"
           aria-controls="menu-principal"
+          aria-label="Abrir menu"
           data-menu
         >
-          <span></span>
-          <span class="visualmente-oculto">Abrir menu</span>
+          <span aria-hidden="true"></span>
         </button>
       </div>
     </div>

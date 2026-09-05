@@ -5,22 +5,23 @@ import { servicos, site } from '../data/site';
 
 <section class="servicos" id="servicos">
   <div class="container">
-    <div class="servicos__marca">
-      <p class="fantasma" aria-hidden="true">serviços</p>
-      <div class="servicos__etiquetas" aria-hidden="true">
-        <span class="etiqueta etiqueta--1">Cuidado veterinário</span>
-        <span class="etiqueta etiqueta--2">Castração segura</span>
-        <span class="etiqueta etiqueta--3">Banho &amp; tosa</span>
-        <span class="etiqueta etiqueta--4">Pet shop</span>
+    <div class="servicos__cabecalho">
+      <div>
+        <h2 class="titulo-secao">Do que seu pet precisa?</h2>
+        <p class="olho">Escolha um serviço e fale direto com a equipe.</p>
+      </div>
+      <div class="servicos__filtros" role="group" aria-label="Filtrar serviços" data-filtros hidden>
+        <button type="button" aria-pressed="true" data-filtro="todos">Todos</button>
+        <button type="button" aria-pressed="false" data-filtro="veterinario">Veterinário</button>
+        <button type="button" aria-pressed="false" data-filtro="petshop">Pet shop</button>
       </div>
     </div>
-
-    <h2 class="servicos__intro">Tudo o que seu pet precisa, com cuidado em cada detalhe</h2>
+    <p class="visualmente-oculto" role="status" data-servicos-status></p>
 
     <div class="servicos__lista">
       {
         servicos.map((servico) => (
-          <article class="servico">
+          <article class="servico" id={servico.id} data-servico-categoria={servico.categoria}>
             <span class="servico__icone">
               <Icone nome={servico.icone} />
             </span>
@@ -56,3 +57,5 @@ import { servicos, site } from '../data/site';
     </div>
   </div>
 </section>
+
+<script src="../scripts/servicos.js"></script>
