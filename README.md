@@ -4,20 +4,13 @@ Site estatico em **Astro 7**, sem framework de UI e sem dependencia de runtime.
 Referencia visual: `umbra-studios/behance/happy_tails`
 ([Happy Tails: Pet Care & Veterinary](https://www.behance.net/gallery/253883069/Happy-Tails-Pet-Care-Veterinary-WordPress-Theme)).
 
-## Revisão de UX e componente dimensional
+## Revisão de UX
 
 A home usa a mensagem “Seu pet, em boas mãos”, a localização e ações explícitas
 para agendar pelo WhatsApp ou ver os serviços. O CTA do hero funciona em todas
 as larguras, inclusive entre 761 e 1023 px. No celular, a foto ganha uma área
 própria para preservar o rosto do cachorro; a avaliação compacta aparece acima
 da imagem, sem cobrir o animal.
-
-`MedalhaPet.astro`, `medalha-pet.css` e `medalha-pet.js` criam uma medalha coral
-com borda turquesa, volume, esmalte e argola em SVG. É um efeito dimensional
-com perspectiva CSS, sem WebGL ou dependências adicionais. O movimento reage
-ao ponteiro no hero, limitado a um quadro por atualização; não há animação
-contínua. Touch, movimento reduzido e ausência de JavaScript mantêm a versão
-estática. A medalha é decorativa, não recebe foco nem intercepta cliques.
 
 Os destaques têm ações identificadas em texto. A lista de serviços oferece
 filtros “Todos”, “Veterinário” e “Pet shop”; sem JavaScript, todos os serviços
@@ -65,11 +58,11 @@ src/
   data/site.ts       contatos, navegacao, servicos, equipe, depoimentos
   data/banho-tosa.ts retratos escolhidos e enquadramentos do antes/depois
   layouts/           SiteLayout (head, SEO, JSON-LD)
-  components/        Cabecalho, Hero, MedalhaPet, Destaques (inclui AntesDepois),
+  components/        Cabecalho, Hero, Destaques (inclui AntesDepois),
                      Servicos, Depoimentos, Agendamento, Contato, Rodape, Icone
   pages/             index.astro, 404.astro
   scripts/main.js    menu movel, header colado, carrossel, voltar ao topo
-  styles/           style.css (tokens + componentes), medalha-pet.css
+  styles/            style.css (tokens + componentes)
 ```
 
 Os dados editaveis estao em `src/data/site.ts` e `src/data/banho-tosa.ts`. A aparencia esta em
